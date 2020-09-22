@@ -1,3 +1,5 @@
+/* GENERAL STYLES */
+
 @font-face {
     font-family: Library-3AM;
     src: url(library-font/Library\ 3\ am.otf);
@@ -13,8 +15,11 @@
     src: url(ptitalic-font/PTF56F.ttf);
 }
 
-html, body {
+* {
     box-sizing: border-box;
+}
+
+html, body {
     margin: 0;
     padding: 0;
     line-height: 1.6;
@@ -26,10 +31,7 @@ a.hidden {
     transition: opacity 1.2s ease-in-out;
 }
 
-.countdown.hidden {
-    opacity: 0;
-    transition: opacity 1.6s ease-in-out;
-}
+/* LANDING PAGE */
 
 .main {
     background: url('background.png');
@@ -96,10 +98,10 @@ a.hidden {
     display: block;
     width: 80%;
     padding: 5px 10px;
+    border-radius: 5px;
     text-align: center;
     text-decoration: none;
     font-weight: bold;
-    border-radius: 5px;
     color: #ccc;
     text-transform: uppercase;
     transition: opacity 1.2s ease-in-out;
@@ -145,26 +147,17 @@ a.hidden {
     width: 80%;
     margin-left: auto;
     padding: 5px 10px;
+    border-radius: 5px;
     text-align: center;
     text-decoration: none;
     font-weight: bold;
-    border-radius: 5px;
     color: #ccc;
     text-transform: uppercase;
     transition: opacity 1.2s ease-in-out;
 }
 
-.countdown {
-    opacity: 1;
-    transition: opacity .6s ease-in-out;
-}
-
-.countdown span {
-    text-decoration: underline;
-    color: #b71c1c;
-}
-
-img {
+.top-image,
+.bottom-image {
     position: absolute;
     top: 10%;
     left: 50%;
@@ -241,4 +234,167 @@ img.large {
     40%, 60% {
       transform: translate3d(2px, 0, 0);
     }
+}
+
+/* HEADER SECTION */
+
+header {
+    background: rgba(0, 0, 0, .8);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 40px;
+    width: 100vw;
+    font-family: Library-3AM;
+}
+
+.navigation {
+    text-align: right;
+    padding-right: 20px;
+}
+
+.navigation ul {
+    list-style-type: none;
+}
+
+.navigation li {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.navigation a {
+    padding-right: 10px;
+    border-right: 1px solid #888;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #888;
+}
+
+.navigation li:last-child a {
+    border-right: none;
+}
+
+.navigation a:hover {
+    color: #ddd;
+}
+
+/* GALLERY PAGE */
+
+.gallery {
+    background: rgba(0, 0, 0, .8);
+    position: absolute;
+    top: 40px;
+    left: 0;
+    height: calc(100vh - 40px);
+    width: 100vw;
+}
+
+.image-wrapper {
+    position: relative;
+    height: 80vh;
+    width: 60vw;
+    margin: 10vh auto;
+}
+
+.image-wrapper .fa-arrow-circle-right {
+    right: 20px
+}
+
+.image-wrapper .fa-arrow-circle-left {
+    left: 20px
+}
+
+.image-wrapper .fa-arrow-circle-left:before {
+    color: #ccc;
+}
+
+.gallery-item-container {
+    position: absolute;
+    top: 0;
+    left: 10%;
+    height: 100%;
+    width: 80%;
+    text-align: center;
+}
+
+.gallery-item {
+    height: 100%;
+}
+
+/* CONTACT PAGE */
+
+.contact {
+    background: rgba(0, 0, 0, .8);
+    position: absolute;
+    top: 40px;
+    left: 0;
+    height: calc(100vh - 40px);
+    width: 100vw;
+}
+
+.contact-form {
+    background: rgba(0, 0, 0, .2);
+    width: 50%;
+    margin: 60px auto;
+    padding: 10px;
+    border: 1px solid rgba(204, 204, 204, .6);
+    border-radius: 5px;
+    box-shadow: 8px 8px 0 rgba(80, 80, 80, .4);
+}
+
+.contact-form form {
+    width: 92%;
+    margin: 10px auto;
+    text-align: center;
+    font-family: PT-Italic;
+}
+
+.form-control {
+    position: relative;
+    margin-bottom: 10px;
+    padding-top: 25px;
+}
+
+.form-control label {
+    position: absolute;
+    top: 25px;
+    left: 0;
+    display: block;
+    width: 100%;
+    text-align: left;
+    color: #fdab00;
+    transition: all .6s ease-in-out;
+}
+
+.form-control input {
+    background: inherit;
+    height: 24px;
+    width: 100%;
+    line-height: 1.6;
+    border: none;
+    border-bottom: 1px solid #fdab00;
+    caret-color: #fdab00;
+    color: #fdab00;
+}
+
+.form-control input:focus {
+    outline: none;
+}
+
+.form-control input:focus + label {
+    top: 0;
+    font-size: 12px;
+}
+
+.contact-form button {
+    background: rgb(2, 0, 36);
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(253, 171, 0, .8) 100%, rgba(0, 212, 255, 1) 100%);
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px 0;
+    font-weight: bold;
+    color: #ccc;
+    text-transform: uppercase;
+    cursor: pointer;
 }
