@@ -101,6 +101,7 @@ a.hidden {
     border-radius: 5px;
     text-align: center;
     text-decoration: none;
+    font-family: Library-3AM;
     font-weight: bold;
     color: #ccc;
     text-transform: uppercase;
@@ -150,6 +151,7 @@ a.hidden {
     border-radius: 5px;
     text-align: center;
     text-decoration: none;
+    font-family: Library-3AM;
     font-weight: bold;
     color: #ccc;
     text-transform: uppercase;
@@ -267,7 +269,7 @@ header {
     border-right: 1px solid #888;
     text-decoration: none;
     text-transform: uppercase;
-    font-size: 12px;
+    font-size: 13px;
     color: #888;
 }
 
@@ -275,6 +277,7 @@ header {
     border-right: none;
 }
 
+.navigation a.active,
 .navigation a:hover {
     color: #ddd;
 }
@@ -295,6 +298,7 @@ header {
     height: 80vh;
     width: 60vw;
     margin: 10vh auto;
+    overflow: hidden;
 }
 
 .image-wrapper .fa-arrow-circle-right {
@@ -311,11 +315,26 @@ header {
 
 .gallery-item-container {
     position: absolute;
+    left: -100%;
     top: 0;
-    left: 10%;
     height: 100%;
     width: 80%;
     text-align: center;
+    transition: all 1.2s ease-in-out;
+    opacity: 0;
+}
+
+.gallery-item-container.previous-item {
+    left: -100%;
+}
+
+.gallery-item-container.visible-item {
+    left: 10%;
+    opacity: 1;
+}
+
+.gallery-item-container.next-item {
+    left: 120%;
 }
 
 .gallery-item {
@@ -363,8 +382,13 @@ header {
     display: block;
     width: 100%;
     text-align: left;
-    color: #fdab00;
+    color: #ccc;
     transition: all .6s ease-in-out;
+    cursor: text;
+}
+
+.form-control span {
+    color: #fdab00;
 }
 
 .form-control input {
@@ -374,17 +398,42 @@ header {
     line-height: 1.6;
     border: none;
     border-bottom: 1px solid #fdab00;
-    caret-color: #fdab00;
-    color: #fdab00;
+    caret-color: #ccc;
+    font-family: PT-Italic;
+    color: #ccc;
+    transition: border-bottom .8s ease-in;
 }
 
-.form-control input:focus {
+.form-control textarea {
+    background: inherit;
+    height: auto;
+    width: 100%;
+    line-height: 1.6;
+    border: none;
+    border-bottom: 1px solid #fdab00;
+    caret-color: #ccc;
+    font-family: PT-Italic;
+    color: #ccc;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    resize: none;
+}
+
+.form-control input:focus,
+.form-control textarea:focus {
     outline: none;
 }
 
-.form-control input:focus + label {
+.form-control input:valid {
+    border-bottom: 1px solid #64dd17;
+}
+
+.form-control input:focus + label,
+.form-control input:valid + label,
+.form-control textarea:focus + label {
     top: 0;
     font-size: 12px;
+    cursor: default;
 }
 
 .contact-form button {
@@ -393,8 +442,11 @@ header {
     width: 100%;
     margin-top: 20px;
     padding: 10px 0;
+    font-family: Library-3AM;
     font-weight: bold;
     color: #ccc;
     text-transform: uppercase;
     cursor: pointer;
+    border-right-color: rgb(118, 118, 118);
+    border-bottom-color: rgb(118, 118, 118);
 }

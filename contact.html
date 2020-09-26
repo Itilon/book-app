@@ -16,28 +16,32 @@
                     <li><a href="./gallery.html">Галерия</a></li>
                     <li><a href="#">За книгата</a></li>
                     <li><a href="#">За автора</a></li>
-                    <li><a href="./contact.html">Поръчай</a></li>
+                    <li><a href="./contact.html" class="active" >Поръчай</a></li>
                 </ul>
             </nav>
         </header>
         <div class="contact">
             <div class="contact-form">
-                <form action="POST">
+                <form action="" method="POST" enctype="text/plain">
                     <div class="form-control">
-                        <input id="name" type="text">
-                        <label for="name">Име и фамилия</label>
+                        <input id="name" type="text" required>
+                        <label for="name">Име и фамилия <span>*</span></label>
                     </div>
                     <div class="form-control">
-                        <input id="email" type="email">
-                        <label for="email">Електронна поща</label>
+                        <input id="email" type="email" required>
+                        <label for="email">Електронна поща <span>*</span></label>
                     </div>
                     <div class="form-control">
-                        <input id="address" type="text">
-                        <label for="address">Адрес за доставка</label>
+                        <input id="address" type="text" required>
+                        <label for="address">Адрес за доставка <span>*</span></label>
                     </div>
                     <div class="form-control">
-                        <input id="telephone" type="text">
-                        <label for="telephone">Телефонен номер</label>
+                        <input id="telephone" type="text" required>
+                        <label for="telephone">Телефонен номер <span>*</span></label>
+                    </div>
+                    <div class="form-control">
+                        <textarea id="comment" rows="1"></textarea>
+                        <label for="comment">Пояснение към поръчката</label>
                     </div>
                     <button>Направи поръчка</button>
                 </form>
@@ -45,5 +49,6 @@
         </div>
     </section>
     <script src="https://use.fontawesome.com/e5be8a6ff9.js"></script>
+    <script src="./contact.js"></script>
 </body>
 </html>
