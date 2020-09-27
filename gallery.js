@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const rightSlide = (rightArrow, imageContainers) => {
     let visibleImageChanged = false;
 
-    if (!rightArrow.classList.contains('hidden')) {
+    if (this.event.detail === 1 && !rightArrow.classList.contains('hidden')) {
         imageContainers.forEach((container, i) => {
             if (container.classList.contains(('visible-item')) && !visibleImageChanged) {
                 container.classList.remove('visible-item');
@@ -47,7 +47,7 @@ const rightSlide = (rightArrow, imageContainers) => {
 const leftSlide = (leftArrow, imageContainers) => {
     let visibleImageChanged = false;
 
-    if (!leftArrow.classList.contains('hidden')) {
+    if (this.event.detail === 1 && !leftArrow.classList.contains('hidden')) {
         imageContainers.forEach((container, i) => {
             if (container.classList.contains(('visible-item')) && !visibleImageChanged) {
                 container.classList.remove('visible-item');
@@ -76,8 +76,7 @@ const leftSlide = (leftArrow, imageContainers) => {
 };
 
 const resizeImage = (image, rightArrow, leftArrow, header, imageOverlay) => {
-
-    if (image.classList.contains('resized')) {
+    if (this.event.detail === 1 && image.classList.contains('resized')) {
         image.classList.remove('resized');
         image.parentElement.classList.remove('resized');
         header.classList.remove('resized');
@@ -86,8 +85,8 @@ const resizeImage = (image, rightArrow, leftArrow, header, imageOverlay) => {
         rightArrow.classList.remove('hidden');
         leftArrow.classList.remove('hidden');
 
-        setTimeout(() => image.parentElement.parentElement.classList.remove('resized'), 1200);
-    } else {
+        setTimeout(() => image.parentElement.parentElement.classList.remove('resized'), 800);
+    } else if (this.event.detail === 1) {
         image.classList.add('resized');
         image.parentElement.classList.add('resized');
         header.classList.add('resized');
