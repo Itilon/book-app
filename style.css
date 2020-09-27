@@ -26,6 +26,11 @@ html, body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+i.hidden {
+    opacity: 0;
+    cursor: default;
+}
+
 a.hidden {
     opacity: 0;
     transition: opacity 1.2s ease-in-out;
@@ -248,6 +253,11 @@ header {
     height: 40px;
     width: 100vw;
     font-family: Library-3AM;
+    z-index: 2;
+}
+
+header.resized .navigation {
+    opacity: 0;
 }
 
 .navigation {
@@ -291,6 +301,7 @@ header {
     left: 0;
     height: calc(100vh - 40px);
     width: 100vw;
+    z-index: 2;
 }
 
 .image-wrapper {
@@ -299,6 +310,10 @@ header {
     width: 60vw;
     margin: 10vh auto;
     overflow: hidden;
+}
+
+.image-wrapper.resized {
+    overflow: visible;
 }
 
 .image-wrapper .fa-arrow-circle-right {
@@ -337,8 +352,33 @@ header {
     left: 120%;
 }
 
+.gallery-item-container.resized {
+    width: 100%;
+    left: 0;
+    overflow: visible;
+}
+
 .gallery-item {
+    margin-top: 0;
     height: 100%;
+    cursor: zoom-in;
+    transition: all .8s ease-in-out;
+}
+
+.gallery-item.resized {
+    margin-top: -40px;
+    transform: scale(1.24);
+    cursor: zoom-out;    
+}
+
+.image-overlay.resized {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #222;
+    transition: all 1.2s ease-in-out;
 }
 
 /* CONTACT PAGE */
@@ -426,6 +466,10 @@ header {
 
 .form-control input:valid {
     border-bottom: 1px solid #64dd17;
+}
+
+.form-control input:invalid {
+    box-shadow: none;
 }
 
 .form-control input:focus + label,
