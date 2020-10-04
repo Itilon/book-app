@@ -85,7 +85,7 @@ const resizeImage = (image, rightArrow, leftArrow, header, imageOverlay) => {
         rightArrow.classList.remove('hidden');
         leftArrow.classList.remove('hidden');
 
-        setTimeout(() => image.parentElement.parentElement.classList.remove('resized'), 800);
+        setTimeout(() => image.parentElement.parentElement.classList.remove('resized'), 600);
     } else if (this.event.detail === 1) {
         image.classList.add('resized');
         image.parentElement.classList.add('resized');

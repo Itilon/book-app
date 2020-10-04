@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
+    <script src="https://use.fontawesome.com/e5be8a6ff9.js" async defer></script>
+    <link rel="stylesheet" href="./style/style.css">
     <title>Драски по софийските работи</title>
 </head>
 <body>
@@ -12,43 +13,50 @@
         <header>
             <nav class="navigation">
                 <ul>
-                    <li><a href="./index.html">Начало</a></li>
-                    <li><a href="./gallery.html">Галерия</a></li>
-                    <li><a href="#">За книгата</a></li>
-                    <li><a href="#">За автора</a></li>
-                    <li><a href="./contact.html" class="active" >Поръчай</a></li>
+                    <li><a href="./index.html"><i class="fa fa-home fa-lg" aria-hidden="true"></i><span>Начало</span></a></li>
+                    <li><a href="./gallery.html"><i class="fa fa-file-picture-o fa-lg" aria-hidden="true"></i><span>Галерия</span></a></li>
+                    <li><a href="./book.html"><i class="fa fa-book fa-lg" aria-hidden="true"></i><span>За книгата</span></a></li>
+                    <li><a href="./author.html"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i><span>За автора</span></a></li>
+                    <li><a href="./contact.html" class="active"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i><span>Поръчай</span></a></li>
                 </ul>
             </nav>
         </header>
         <div class="contact">
             <div class="contact-form">
-                <form action="" method="POST" enctype="text/plain">
+                <form action="" method="POST" enctype="text/plain" novalidate>
                     <div class="form-control">
-                        <input id="name" type="text" required>
-                        <label for="name">Име и фамилия <span>*</span></label>
+                        <input id="name" type="text" minlength="5" required>
+                        <label for="name">
+                            Име и фамилия <span class="tooltip">* <span class="tooltiptext">Задължително поле</span></span>
+                        </label>
                     </div>
                     <div class="form-control">
-                        <input id="email" type="email" required>
-                        <label for="email">Електронна поща <span>*</span></label>
+                        <input id="email" type="email" minlength="5" required>
+                        <label for="email">
+                            Електронна поща <span class="tooltip">* <span class="tooltiptext">Задължително поле</span></span>
+                        </label>
                     </div>
                     <div class="form-control">
-                        <input id="address" type="text" required>
-                        <label for="address">Адрес за доставка <span>*</span></label>
+                        <input id="address" type="text" minlength="5" required>
+                        <label for="address">
+                            Адрес за доставка <span class="tooltip">* <span class="tooltiptext">Задължително поле</span></span>
+                        </label>
                     </div>
                     <div class="form-control">
-                        <input id="telephone" type="text" required>
-                        <label for="telephone">Телефонен номер <span>*</span></label>
+                        <input id="telephone" type="tel" minlength="5" pattern="^[0-9 +-]*$" required>
+                        <label for="telephone">
+                            Телефонен номер <span class="tooltip">* <span class="tooltiptext">Задължително поле</span></span>
+                        </label>
                     </div>
                     <div class="form-control">
                         <textarea id="comment" rows="1"></textarea>
                         <label for="comment">Пояснение към поръчката</label>
                     </div>
-                    <button>Направи поръчка</button>
+                    <button type="submit">Направи поръчка</button>
                 </form>
             </div>
         </div>
     </section>
-    <script src="https://use.fontawesome.com/e5be8a6ff9.js"></script>
-    <script src="./contact.js"></script>
+    <script src="./js/contact.js"></script>
 </body>
 </html>
