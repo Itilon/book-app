@@ -28,7 +28,7 @@ html, body {
 
 i.hidden {
     opacity: 0;
-    cursor: default;
+    cursor: zoom-out;
 }
 
 a.hidden {
@@ -316,7 +316,6 @@ header.resized .navigation {
     left: 0;
     height: calc(100vh - 40px);
     width: 100vw;
-    z-index: 2;
 }
 
 .image-wrapper {
@@ -329,6 +328,8 @@ header.resized .navigation {
 
 .image-wrapper.resized {
     overflow: visible;
+    cursor: zoom-out;
+    z-index: 4;
 }
 
 .image-wrapper .fa-arrow-circle-right {
@@ -376,8 +377,11 @@ header.resized .navigation {
 .gallery-item {
     margin-top: 0;
     height: 100%;
-    cursor: zoom-in;
     transition: all .6s ease-in-out;
+}
+
+.visible-item .gallery-item {
+    cursor: zoom-in;
 }
 
 .gallery-item.resized {
@@ -393,7 +397,39 @@ header.resized .navigation {
     height: 100%;
     width: 100%;
     background: #222;
+    cursor: zoom-out;
+    z-index: 2;
     transition: all 1.2s ease-in-out;
+}
+
+.image-text-container {
+    opacity: 1;
+    transition: all 1.2s ease-in-out;
+}
+
+.image-text-container:nth-child(odd) {
+    position: absolute;
+    top: calc(10vh + 40px);
+    right: 10px;
+    width: 30vw;
+}
+
+
+.image-text-container:nth-child(even) {
+    position: absolute;
+    bottom: 10vh;
+    left: 10px;
+    width: 30vw;
+}
+
+.image-text-container.hidden {
+    opacity: 0;
+}
+
+.image-text-container .image-text {
+    font-family: Thorn-Valley;
+    font-size: 20px;
+    color: #ccc;
 }
 
 /* AUTHOR & BOOK PAGE */

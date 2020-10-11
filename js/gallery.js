@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const main = document.querySelector('.main');
-    const header = main.querySelector('header');
     const rightArrow = main.querySelector('.fa-arrow-circle-right');
     const leftArrow = main.querySelector('.fa-arrow-circle-left');
+    const imageWrapper = main.querySelector('.image-wrapper');
     const imageOverlay = main.querySelector('.image-overlay');
 
     const imageContainers = Array.from(main.querySelectorAll('.gallery-item-container'));
@@ -10,7 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     rightArrow.addEventListener('click', rightSlide.bind(null, rightArrow, imageContainers));
     leftArrow.addEventListener('click', leftSlide.bind(null, leftArrow, imageContainers));
-    images.forEach(image => image.addEventListener('click', resizeImage.bind(null, image, rightArrow, leftArrow, header, imageOverlay)));
+    images.forEach(image => image.addEventListener('click', resizeImage.bind(null, image, main)));
+    imageWrapper.addEventListener('click', downsizeImage.bind(null, imageWrapper, main));
+    imageOverlay.addEventListener('click', downsizeImage.bind(null, imageOverlay, main));
 });
 
 const rightSlide = (rightArrow, imageContainers) => {
@@ -37,6 +39,10 @@ const rightSlide = (rightArrow, imageContainers) => {
                 } else {
                     imageContainers[imageContainers.length - 2].classList.add('previous-item');
                 }
+
+                document
+                    .querySelectorAll('.image-text-container')
+                    .forEach(element => element.classList.contains('hidden') ? element.classList.remove('hidden') : element.classList.add('hidden'));
     
                 visibleImageChanged = true;
             }
@@ -68,6 +74,10 @@ const leftSlide = (leftArrow, imageContainers) => {
                 } else {
                     imageContainers[1].classList.add('next-item');
                 }
+                
+                document
+                    .querySelectorAll('.image-text-container')
+                    .forEach(element => element.classList.contains('hidden') ? element.classList.remove('hidden') : element.classList.add('hidden'));
     
                 visibleImageChanged = true;
             }
@@ -75,26 +85,43 @@ const leftSlide = (leftArrow, imageContainers) => {
     }
 };
 
-const resizeImage = (image, rightArrow, leftArrow, header, imageOverlay) => {
-    if (this.event.detail === 1 && image.classList.contains('resized')) {
-        image.classList.remove('resized');
-        image.parentElement.classList.remove('resized');
-        header.classList.remove('resized');
-        imageOverlay.classList.remove('resized');
+const resizeImage = (image, main) => {
+    this.event.stopPropagation();
 
-        rightArrow.classList.remove('hidden');
-        leftArrow.classList.remove('hidden');
-
-        setTimeout(() => image.parentElement.parentElement.classList.remove('resized'), 600);
+    if (this.event.detail === 1 && image.offsetParent.classList.contains('visible-item')) {
+        if (image.classList.contains('resized')) {
+            removeResizedClass(document.querySelector('.main'));
+        } else {
+            addResizedClass(image, main);
+        }
     } else if (this.event.detail === 1) {
-        image.classList.add('resized');
-        image.parentElement.classList.add('resized');
-        header.classList.add('resized');
-        imageOverlay.classList.add('resized');
-
-        rightArrow.classList.add('hidden');
-        leftArrow.classList.add('hidden');
-
-        image.parentElement.parentElement.classList.add('resized');
+        removeResizedClass(document.querySelector('.main'));
     }
+};
+
+const downsizeImage = (element, main) => {
+    if (element.classList.contains('resized')) {
+        removeResizedClass(main);
+    }
+};
+
+const addResizedClass = (image, main) => {
+    image.classList.add('resized');
+    image.parentElement.classList.add('resized');
+
+    main.querySelector('header').classList.add('resized');
+    main.querySelector('.image-overlay').classList.add('resized');
+    main.querySelector('.image-wrapper').classList.add('resized');
+
+    main.querySelectorAll('i.fa').forEach(elt => elt.classList.add('hidden'));
+};
+
+const removeResizedClass = (main) => {
+    main.querySelectorAll('.resized').forEach(element => {
+        element.classList.contains('image-wrapper') ?
+            setTimeout(() => element.classList.remove('resized'), 600) :
+            element.classList.remove('resized');
+    });
+
+   main.querySelectorAll('.hidden').forEach(elt => elt.classList.remove('hidden'));
 };
