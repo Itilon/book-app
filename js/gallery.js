@@ -40,9 +40,9 @@ const rightSlide = (rightArrow, imageContainers) => {
                     imageContainers[imageContainers.length - 2].classList.add('previous-item');
                 }
 
-                document
-                    .querySelectorAll('.image-text-container')
-                    .forEach(element => element.classList.contains('hidden') ? element.classList.remove('hidden') : element.classList.add('hidden'));
+                const textContainers = document.querySelectorAll('.image-text-container');
+                textContainers[i].classList.add('hidden');
+                textContainers[i - 1] ? textContainers[i - 1].classList.remove('hidden') : textContainers[imageContainers.length - 1].classList.remove('hidden');
     
                 visibleImageChanged = true;
             }
@@ -75,9 +75,9 @@ const leftSlide = (leftArrow, imageContainers) => {
                     imageContainers[1].classList.add('next-item');
                 }
                 
-                document
-                    .querySelectorAll('.image-text-container')
-                    .forEach(element => element.classList.contains('hidden') ? element.classList.remove('hidden') : element.classList.add('hidden'));
+                const textContainers = document.querySelectorAll('.image-text-container');
+                textContainers[i].classList.add('hidden');
+                textContainers[i + 1] ? textContainers[i + 1].classList.remove('hidden') : textContainers[0].classList.remove('hidden');
     
                 visibleImageChanged = true;
             }
@@ -123,5 +123,5 @@ const removeResizedClass = (main) => {
             element.classList.remove('resized');
     });
 
-   main.querySelectorAll('.hidden').forEach(elt => elt.classList.remove('hidden'));
+   main.querySelectorAll('i.fa.hidden').forEach(elt => elt.classList.remove('hidden'));
 };

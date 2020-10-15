@@ -298,12 +298,37 @@ header.resized .navigation {
 }
 
 @media only screen and (max-width: 600px) {
+    .navigation {
+        padding-right: 0;
+        text-align: center;
+    }
+
+    .navigation ul {
+        padding-inline-start: 0;
+    }
+
+    .navigation li {
+        margin: 0;
+    }
+
+    .navigation a {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
     .navigation a span {
         display: none;
     }
 
     .navigation .fa {
         display: inline;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .navigation a {
+        padding-right: 15px;
+        padding-left: 15px;
     }
 }
 
@@ -404,7 +429,7 @@ header.resized .navigation {
 
 .image-text-container {
     opacity: 1;
-    transition: all 1.2s ease-in-out;
+    transition: all .8s ease-in-out;
 }
 
 .image-text-container:nth-child(odd) {
