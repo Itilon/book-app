@@ -457,6 +457,38 @@ header.resized .navigation {
     color: #ccc;
 }
 
+@media only screen and (max-width: 600px) {
+    .image-wrapper {
+        width: 100vw;
+    }
+
+    .gallery-item-container {
+        width: 92%;
+        margin: 0 4%;
+    }
+
+    .gallery-item-container.visible-item {
+        left: 0;
+    }
+
+    .gallery-item {
+        width: 100%;
+        object-fit: contain;
+    }
+
+    .gallery-item.resized {
+        transform: scale(1.36);
+    }
+
+    .image-wrapper .fa {
+        display: none;
+    }
+
+    .image-text-container {
+        display: none;
+    }
+}
+
 /* AUTHOR & BOOK PAGE */
 
 .author, .book {
@@ -627,5 +659,9 @@ header.resized .navigation {
 
     .contact-form form {
         width: 100%;
+    }
+
+    .form-control .tooltip:hover .tooltiptext {
+        display: none;
     }
 }
