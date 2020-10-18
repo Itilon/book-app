@@ -432,18 +432,17 @@ header.resized .navigation {
     transition: all .8s ease-in-out;
 }
 
-.image-text-container:nth-child(odd) {
-    position: absolute;
-    top: calc(10vh + 40px);
-    right: 10px;
-    width: 30vw;
-}
-
-
 .image-text-container:nth-child(even) {
     position: absolute;
     bottom: 10vh;
     left: 10px;
+    width: 30vw;
+}
+
+.image-text-container:nth-child(odd) {
+    position: absolute;
+    top: calc(10vh + 40px);
+    right: 10px;
     width: 30vw;
 }
 
@@ -455,6 +454,13 @@ header.resized .navigation {
     font-family: Thorn-Valley;
     font-size: 20px;
     color: #ccc;
+}
+
+@media only screen and (max-width: 1260px) {
+    .image-text-container:nth-child(even),
+    .image-text-container:nth-child(odd) {
+        width: 25vw;
+    }
 }
 
 @media only screen and (max-width: 600px) {
@@ -491,13 +497,40 @@ header.resized .navigation {
 
 /* AUTHOR & BOOK PAGE */
 
-.author, .book {
+.text-container {
     background: rgba(0, 0, 0, .8);
     position: absolute;
     top: 40px;
     left: 0;
     height: calc(100vh - 40px);
     width: 100vw;
+}
+
+.text-wrapper {
+    background: rgba(0, 0, 0, .2);
+    width: 50%;
+    margin: 60px auto;
+    padding: 10px;
+    border: 1px solid rgba(204, 204, 204, .6);
+    border-radius: 5px;
+    box-shadow: 8px 8px 0 rgba(80, 80, 80, .4);
+}
+
+.text-wrapper h1 {
+    font-family: Library-3AM;
+    text-align: center;
+    color: #fdab00;
+}
+
+.text-wrapper p {
+    font-family: PT-Italic;
+    color: #ddd;
+}
+
+@media only screen and (max-width: 600px) {
+    .text-wrapper {
+        width: 80%;
+    }
 }
 
 /* CONTACT PAGE */

@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     images.forEach(image => {
         image.addEventListener('click', resizeImage.bind(null, image, main));
         image.addEventListener('touchstart', onTouchStart);
-        image.addEventListener('touchmove', onTouchMove.bind(null, imageContainers));
+        image.addEventListener('touchmove', onTouchMove.bind(null, image, imageContainers));
     });
     imageWrapper.addEventListener('click', downsizeImage.bind(null, imageWrapper, main));
     imageOverlay.addEventListener('click', downsizeImage.bind(null, imageOverlay, main));
@@ -136,10 +136,10 @@ const onTouchStart = () => {
     this.xDown = this.event.touches[0].clientX;
 };
 
-const onTouchMove = (imageContainers) => {
+const onTouchMove = (image, imageContainers) => {
     let visibleImageChanged = false;
 
-    if (this.xDown) {
+    if (!image.classList.contains('resized') && this.xDown) {
         const xUp = this.event.touches[0].clientX;                                    
 
         const xDiff = this.xDown - xUp;
