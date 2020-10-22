@@ -244,11 +244,28 @@ img.large {
 }
 
 @media only screen and (max-width: 600px) {
+    .top-image,
+    .bottom-image {
+        top: 0;
+        height: 100%;
+    }
+
     .top a, .bottom a,
-    .content-body-right,
-    .content-body-left, 
+    .content-body-right, .content-body-left, 
     .skewed .fa, .skewed .fa {
         display: none;
+    }
+
+    .skewed .handle {
+        transform: rotate(29.5deg) translateY(-50%);
+    }
+
+    .skewed .top {
+        transform: skew(-29.5deg);
+    }
+    
+    .skewed .top .content-wrap {
+        transform: skew(29.5deg);
     }
 }
 
