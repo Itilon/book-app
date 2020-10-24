@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let centered = true;
 
+    this.addEventListener('orientationchange', onOrientationChange.bind(null, handle, topLayer));
+
     images.forEach(image => {
         image.addEventListener('mouseenter', () => {
             if (!centered) { image.classList.add('large'); }
@@ -56,6 +58,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+const onOrientationChange = (handle, topLayer) => {
+    if (this.innerWidth <= 600) {
+        styleHandleAndTopLayer(handle, topLayer, 50);
+    }
+};
+
+const onImageClick = (image) => {
+    if (this.innerWidth <= 600) {
+        window.location = image.classList.contains('top-image') ? '/gallery.html' : '/contact.html';
+    }
+};
+
 const styleHandleAndTopLayer = (handle, topLayer, value) => {
     handle.style.left = value + '%';
     topLayer.style.width = `calc(${value}vw + 1000px)`;
@@ -65,10 +79,4 @@ const styleHandleAndTopLayer = (handle, topLayer, value) => {
 const styleArrow = (arrow, opacity, zIndex) => {
     arrow.style.opacity = opacity;
     arrow.style.zIndex = zIndex;
-};
-
-const onImageClick = (image) => {
-    if (this.innerWidth <= 600) {
-        window.location = image.classList.contains('top-image') ? '/gallery.html' : '/contact.html';
-    }
 };
