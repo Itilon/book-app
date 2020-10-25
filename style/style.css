@@ -634,8 +634,8 @@ header.resized .navigation {
 .contact-form form {
     width: 92%;
     margin: 10px auto;
-    text-align: center;
     font-family: PT-Italic;
+    text-align: center;
 }
 
 .form-control {
@@ -673,7 +673,7 @@ header.resized .navigation {
     text-align: center;
     font-size: 12px;
     color: #ccc;
-    border-radius: 6px;
+    border-radius: 5px;
 }
 
 .form-control .tooltiptext::after {
@@ -730,8 +730,8 @@ header.resized .navigation {
 }
 
 .form-control input.invalid {
-    border-bottom: 1px solid #f44336;
-    box-shadow: 0 1px 0 0 #f44336;
+    border-bottom: 1px solid #f12617;
+    box-shadow: 0 1px 0 0 #f12617;
 }
 
 .form-control input:invalid {
@@ -760,6 +760,33 @@ header.resized .navigation {
     cursor: pointer;
     border-right-color: rgb(118, 118, 118);
     border-bottom-color: rgb(118, 118, 118);
+}
+
+.error-message {
+    background: rgba(60, 60, 60, 0.8);
+    margin: 10px 0;
+    padding: 0 5px;
+    border-radius: 5px;
+    text-align: left;
+    opacity: 0;
+    transition: opacity .8s ease-in-out;
+}
+
+.error-message.show {
+    opacity: 1;
+}
+
+.error-message .fa-exclamation-triangle {
+    color: #f12617;
+}
+
+.error-message p {
+    display: inline-block;
+    padding: 0 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    color: #f12617;
+    text-align: left;
 }
 
 @media only screen and (max-width: 600px) {

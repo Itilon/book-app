@@ -18,8 +18,28 @@ const validateForm = (form) => {
     this.event.preventDefault();
 
     if (form.checkValidity()) {
+
     } else {
-        [...form.elements].forEach(element => console.dir(element.validity.valid));
+        [...form.elements].forEach((element) => {
+            if (!element.validity.valid) {
+                element.classList.add('invalid');
+
+                const errorMessageContainer = document.createElement('div');
+                errorMessageContainer.classList.add('error-message');
+
+                const errorIcon = document.createElement('i');
+                errorIcon.classList.add('fa', 'fa-exclamation-triangle');
+
+                const errorMessage = document.createElement('p');
+                errorMessage.innerHTML = 'Моля, попълнете това поле правилно!';
+
+                errorMessageContainer.appendChild(errorIcon);
+                errorMessageContainer.appendChild(errorMessage);
+                element.parentElement.appendChild(errorMessageContainer);
+
+                setTimeout(() => errorMessageContainer.classList.add('show'), 0);
+            }
+        });
     }
 };
 
