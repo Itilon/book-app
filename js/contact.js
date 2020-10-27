@@ -21,7 +21,7 @@ const validateForm = (form) => {
 
     } else {
         [...form.elements].forEach((element) => {
-            if (!element.validity.valid) {
+            if (!element.validity.valid && ![...element.parentElement.children].find((child) => child.classList.contains('error-message'))) {
                 element.classList.add('invalid');
 
                 const errorMessageContainer = document.createElement('div');
@@ -31,13 +31,20 @@ const validateForm = (form) => {
                 errorIcon.classList.add('fa', 'fa-exclamation-triangle');
 
                 const errorMessage = document.createElement('p');
-                errorMessage.innerHTML = 'Моля, попълнете това поле правилно!';
+                errorMessage.innerHTML = 'Моля, попълни това поле правилно!';
+
+                const exitBtn = document.createElement('span');
+                exitBtn.classList.add('exit-btn');
+                exitBtn.innerHTML = '&#10005;';
 
                 errorMessageContainer.appendChild(errorIcon);
                 errorMessageContainer.appendChild(errorMessage);
+                errorMessageContainer.appendChild(exitBtn);
                 element.parentElement.appendChild(errorMessageContainer);
 
                 setTimeout(() => errorMessageContainer.classList.add('show'), 0);
+
+                exitBtn.addEventListener('click', () => errorMessageContainer.remove());
             }
         });
     }

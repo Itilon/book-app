@@ -766,6 +766,9 @@ header.resized .navigation {
     background: rgba(60, 60, 60, 0.8);
     margin: 10px 0;
     padding: 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     border-radius: 5px;
     text-align: left;
     opacity: 0;
@@ -782,11 +785,20 @@ header.resized .navigation {
 
 .error-message p {
     display: inline-block;
+    width: 90%;
     padding: 0 5px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 13px;
     color: #f12617;
     text-align: left;
+}
+
+.error-message .exit-btn {
+    display: inline-block;
+    padding: 0 5px;
+    font-size: 13px;
+    color: #f12617;
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 600px) {
