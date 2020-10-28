@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', validateForm.bind(null, form));
 
     inputs.forEach(input => {
+        input.addEventListener('keydown', checkForErrorMessage.bind(null, input));
         input.addEventListener('focusout', styleElementLabel.bind(null, input));
     });
 
@@ -22,31 +23,33 @@ const validateForm = (form) => {
     } else {
         [...form.elements].forEach((element) => {
             if (!element.validity.valid && ![...element.parentElement.children].find((child) => child.classList.contains('error-message'))) {
-                element.classList.add('invalid');
-
-                const errorMessageContainer = document.createElement('div');
-                errorMessageContainer.classList.add('error-message');
-
-                const errorIcon = document.createElement('i');
-                errorIcon.classList.add('fa', 'fa-exclamation-triangle');
-
-                const errorMessage = document.createElement('p');
-                errorMessage.innerHTML = 'Моля, попълни това поле правилно!';
-
-                const exitBtn = document.createElement('span');
-                exitBtn.classList.add('exit-btn');
-                exitBtn.innerHTML = '&#10005;';
-
-                errorMessageContainer.appendChild(errorIcon);
-                errorMessageContainer.appendChild(errorMessage);
-                errorMessageContainer.appendChild(exitBtn);
-                element.parentElement.appendChild(errorMessageContainer);
-
-                setTimeout(() => errorMessageContainer.classList.add('show'), 0);
-
-                exitBtn.addEventListener('click', () => errorMessageContainer.remove());
+                populateErrorMessage(element);
             }
         });
+    }
+};
+
+const populateErrorMessage = (element) => {
+    element.classList.add('invalid');
+
+    const errorMessageContainer = createElement('div', ['error-message'], null);
+    const errorIcon = createElement('i', ['fa', 'fa-exclamation-triangle'], null);
+    const errorMessage = createElement('p', null, 'Моля, попълни това поле правилно!')
+    const exitBtn = createElement('span', ['exit-btn'], '&#10005;');
+
+    errorMessageContainer.appendChild(errorIcon);
+    errorMessageContainer.appendChild(errorMessage);
+    errorMessageContainer.appendChild(exitBtn);
+    element.parentElement.appendChild(errorMessageContainer);
+
+    setTimeout(() => errorMessageContainer.classList.add('show'), 0);
+
+    exitBtn.addEventListener('click', () => removeElement(errorMessageContainer));
+};
+
+const checkForErrorMessage = (input) => {
+    if (input.validity.valid && [...input.parentElement.children].find((child) => child.classList.contains('error-message'))) {
+        removeElement([...input.parentElement.children].find((child) => child.classList.contains('error-message')));
     }
 };
 
@@ -54,7 +57,6 @@ const resizeTextarea = (textarea) => {
     textarea.style.height = 'auto';
     textarea.style.height = `${textarea.scrollHeight}px`;
 };
-
 
 const styleElementLabel = (element) => {
     if (element.value) {
@@ -76,4 +78,17 @@ const styleElementLabel = (element) => {
             element.classList.remove('valid');
         }
     }
+};
+
+const createElement = (tagName, classList, innerText) => {
+    const element = document.createElement(tagName);
+    if (classList) {
+        element.classList.add(...classList);
+    }
+    element.innerHTML = innerText;
+    return element;
+};
+
+const removeElement = (element) => {
+    element.remove();
 };
