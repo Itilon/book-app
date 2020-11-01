@@ -1,4 +1,5 @@
 window.xDown = null;
+window.yDown = null;
 
 document.addEventListener('DOMContentLoaded', () => {
     const main = document.querySelector('.main');
@@ -134,17 +135,20 @@ const removeResizedClass = (main) => {
 
 const onTouchStart = () => {
     this.xDown = this.event.touches[0].clientX;
+    this.yDown = this.event.touches[0].clientY;
 };
 
 const onTouchMove = (image, imageContainers) => {
     let visibleImageChanged = false;
 
     if (!image.classList.contains('resized') && this.xDown) {
-        const xUp = this.event.touches[0].clientX;                                    
+        const xUp = this.event.touches[0].clientX;
+        const yUp = this.event.touches[0].clientY;                                    
 
         const xDiff = this.xDown - xUp;
+        const yDiff = this.yDown - yUp;
 
-        if (xDiff > 0) {
+        if ((Math.abs(xDiff) > Math.abs(yDiff)) && xDiff > 0) {
             imageContainers.forEach((container, i) => {
                 if (container.classList.contains(('visible-item')) && !visibleImageChanged) {
                     container.classList.remove('visible-item');
@@ -173,7 +177,7 @@ const onTouchMove = (image, imageContainers) => {
                     visibleImageChanged = true;
                 }
             });
-        } else {
+        } else if ((Math.abs(xDiff) > Math.abs(yDiff))) {
             imageContainers.forEach((container, i) => {
                 if (container.classList.contains(('visible-item')) && !visibleImageChanged) {
                     container.classList.remove('visible-item');
@@ -205,5 +209,6 @@ const onTouchMove = (image, imageContainers) => {
         }
 
         this.xDown = null;
+        this.yDown = null;
     }
 };
