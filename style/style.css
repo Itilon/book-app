@@ -168,8 +168,30 @@ a.hidden {
     transition: opacity 1.2s ease-in-out;
 }
 
-.bottom .hidden {
+.bottom-article {
+    margin-top: 20px;
+    opacity: 1;
+    transition: opacity .8s ease-in-out;
+}
+
+.bottom-article:nth-child(2) {
+    margin-top: 80px;
+}
+
+.bottom-article.hidden {
     opacity: 0;
+}
+
+.bottom-article q {
+    font-family: Marck-Script;
+    font-size: 20px;
+    color: #fff;
+}
+
+.bottom-article p {
+    font-family: Thorn-Valley;
+    font-size: 22px;
+    color: #fdab00;
 }
 
 .top-image,
@@ -527,8 +549,8 @@ header.resized .navigation {
 }
 
 .image-text-container .image-text {
-    font-family: Thorn-Valley;
-    font-size: 20px;
+    font-family: Marck-Script;
+    font-size: 18px;
     color: #ccc;
 }
 

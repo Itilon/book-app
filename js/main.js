@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const images = main.querySelectorAll('img');
     const topButton = main.querySelector('.top a');
     const bottomButton = main.querySelector('.bottom a');
+    const bottomArticles = main.querySelectorAll('.bottom .bottom-article');
 
     let centered = true;
 
@@ -37,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
             styleArrow(leftArrow, 1, 5);
 
             topButton.classList.remove('hidden');
+            bottomArticles.forEach(article => article.classList.add('hidden'));
             centered = true;
         }
     });
@@ -47,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
             styleArrow(leftArrow, 0, 0);
 
             topButton.classList.add('hidden');
+            bottomArticles.forEach(article => article.classList.remove('hidden'));
             centered = false;
         } else if (this.event.detail) {
             styleHandleAndTopLayer(handle, topLayer, 50);
