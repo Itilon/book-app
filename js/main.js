@@ -26,13 +26,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     rightArrow.addEventListener('click', () => {
-        if (centered) {
+        if (this.event.detail === 1 && centered) {
             styleHandleAndTopLayer(handle, topLayer, 105);
             styleArrow(rightArrow, 0, 0);
 
             bottomButton.classList.add('hidden');
             centered = false;
-        } else {
+        } else if (this.event.detail === 1) {
             styleHandleAndTopLayer(handle, topLayer, 50);
             styleArrow(leftArrow, 1, 5);
 
@@ -42,13 +42,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     leftArrow.addEventListener('click', () => {
-        if (centered) {
+        if (this.event.detail === 1 && centered) {
             styleHandleAndTopLayer(handle, topLayer, -5);
             styleArrow(leftArrow, 0, 0);
 
             topButton.classList.add('hidden');
             centered = false;
-        } else {
+        } else if (this.event.detail) {
             styleHandleAndTopLayer(handle, topLayer, 50);
             styleArrow(rightArrow, 1, 5);
 
