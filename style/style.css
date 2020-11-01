@@ -15,6 +15,11 @@
     src: url(../ptitalic-font/PTF56F.ttf);
 }
 
+@font-face {
+    font-family: Marck-Script;
+    src: url(../marck-script/MarckScript-Regular.ttf)
+}
+
 * {
     box-sizing: border-box;
 }
@@ -118,14 +123,14 @@ a.hidden {
 }
 
 .top q {
-    font-family: Thorn-Valley;
-    font-size: 26px;
-    color: #263238;
+    font-family: Marck-Script;
+    font-size: 20px;
+    color: #fff;
 }
 
 .top p {
-    font-family: PT-Italic;
-    font-size: 18px;
+    font-family: Thorn-Valley;
+    font-size: 22px;
     color: #42300b;
 }
 
@@ -161,6 +166,10 @@ a.hidden {
     color: #ccc;
     text-transform: uppercase;
     transition: opacity 1.2s ease-in-out;
+}
+
+.bottom .hidden {
+    opacity: 0;
 }
 
 .top-image,
@@ -599,8 +608,8 @@ header.resized .navigation {
 }
 
 .text-wrapper p {
-    font-family: PT-Italic;
-    font-size: 14px;
+    font-family: Marck-Script;
+    font-size: 18px;
     color: #ddd;
 }
 
