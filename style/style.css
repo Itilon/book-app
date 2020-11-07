@@ -550,7 +550,7 @@ header.resized .navigation {
 
 .image-text-container .image-text {
     font-family: Marck-Script;
-    font-size: 18px;
+    font-size: 20px;
     color: #ccc;
 }
 
@@ -654,17 +654,19 @@ header.resized .navigation {
 
 .contact-form {
     background: rgba(0, 0, 0, .2);
+    max-height: calc(100vh - 40px);
     width: 50%;
     margin: 60px auto;
     padding: 10px;
     border: 1px solid rgba(204, 204, 204, .6);
     border-radius: 5px;
     box-shadow: 8px 8px 0 rgba(80, 80, 80, .4);
+    overflow: auto;
 }
 
 .contact-form form {
     width: 92%;
-    margin: 10px auto;
+    margin: 10px auto 20px;
     font-family: PT-Italic;
     text-align: center;
 }
@@ -844,4 +846,32 @@ header.resized .navigation {
     .form-control .tooltip:hover .tooltiptext {
         display: none;
     }
+}
+
+/* SCROLLBAR */
+
+.contact-form,
+.text-wrapper {
+    scrollbar-width: thin;
+    scrollbar-color: #555 rgba(0, 0, 0, .2);
+}
+
+.contact-form::-webkit-scrollbar,
+.text-wrapper::-webkit-scrollbar {
+    width: 8px;
+}
+
+.contact-form::-webkit-scrollbar-track,
+.text-wrapper::-webkit-scrollbar-track {
+    background: inherit;
+}
+
+.contact-form::-webkit-scrollbar-thumb,
+.text-wrapper::-webkit-scrollbar-thumb {
+    background: #555;
+}
+
+.contact-form::-webkit-scrollbar-thumb:hover,
+.text-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #888; 
 }
