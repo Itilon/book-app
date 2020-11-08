@@ -28,7 +28,15 @@ const validateForm = (form) => {
     this.event.preventDefault();
 
     if (form.checkValidity()) {
+        [...form.elements].forEach((element) => {
+            element.classList.remove('valid');
 
+            element.type !== 'checkbox' && element.type !== 'number' ?
+                element.value = '' :
+                element.type === 'checkbox' ?
+                    element.checked = false :
+                    element.value = '1';
+        });
     } else {
         [...form.elements].forEach((element) => {
             if (!element.validity.valid && ![...element.parentElement.children].find((child) => child.classList.contains('error-message'))) {
