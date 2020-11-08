@@ -40,7 +40,12 @@ const populateErrorMessage = (element) => {
     errorMessageContainer.appendChild(errorIcon);
     errorMessageContainer.appendChild(errorMessage);
     errorMessageContainer.appendChild(exitBtn);
-    element.parentElement.appendChild(errorMessageContainer);
+
+    if (!element.parentElement.classList.contains('agreement')) {
+        element.parentElement.appendChild(errorMessageContainer);
+    } else {
+        element.parentElement.parentElement.appendChild(errorMessageContainer);
+    }
 
     setTimeout(() => errorMessageContainer.classList.add('show'), 0);
 

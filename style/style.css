@@ -787,7 +787,7 @@ header.resized .navigation {
 .agreement label {
     position: relative;
     top: -6px;
-    left: 10px;
+    padding-left: 10px;
     font-size: 14px;
 }
 
@@ -858,7 +858,6 @@ header.resized .navigation {
 .error-message p {
     display: inline-block;
     width: 90%;
-    padding: 0 5px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 13px;
     color: #f12617;
@@ -871,6 +870,13 @@ header.resized .navigation {
     font-size: 13px;
     color: #f12617;
     cursor: pointer;
+}
+
+
+@media only screen and (max-width: 1260px) {
+    .error-message p {
+        padding: 0 5px;
+    }
 }
 
 @media only screen and (max-width: 600px) {
