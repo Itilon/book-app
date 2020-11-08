@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
             input.addEventListener('click', checkForErrorMessage.bind(null, input));
         } else {
             input.addEventListener('keyup', populateCountAndPriceFields.bind(null, input, pieceCounter, priceCounter));
+            input.addEventListener('focusout', validateNumberInput.bind(null, input, pieceCounter, priceCounter));
         }
     });
 
@@ -110,7 +111,21 @@ const removeElement = (element) => {
 
 const populateCountAndPriceFields = (input, pieceCounter, priceCounter) => {
     if (input.validity.valid) {
+        input.classList.add('valid');
+        input.classList.remove('invalid');
         pieceCounter.innerText = input.value === '1' ? 'бройка' : 'бройки';
         priceCounter.innerText = `${input.value * 30}`;
+    } else {
+        input.classList.add('invalid');
+        input.classList.remove('valid');
     }
 };
+
+const validateNumberInput = (input, pieceCounter, priceCounter) => {
+    if (!input.validity.valid) {
+        input.classList.remove('invalid');
+        input.value = '1';
+        pieceCounter.innerText = 'бройка';
+        priceCounter.innerText = '30';
+    }
+}
