@@ -3,15 +3,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = main.querySelector('form');
     const inputs = main.querySelectorAll('input');
     const textarea = main.querySelector('textarea');
+    const pieceCounter = main.querySelector('.piece-count');
+    const priceCounter = main.querySelector('.price');
 
     form.addEventListener('submit', validateForm.bind(null, form));
 
     inputs.forEach((input) => {
-        if (input.type !== 'checkbox') {
+        if (input.type !== 'checkbox' && input.type !== 'number') {
             input.addEventListener('keydown', checkForErrorMessage.bind(null, input));
             input.addEventListener('focusout', styleElementLabel.bind(null, input));
-        } else {
+        } else if (input.type === 'checkbox') {
             input.addEventListener('click', checkForErrorMessage.bind(null, input));
+        } else {
+            input.addEventListener('keyup', populateCountAndPriceFields.bind(null, input, pieceCounter, priceCounter));
         }
     });
 
@@ -102,4 +106,11 @@ const createElement = (tagName, classList, innerText) => {
 
 const removeElement = (element) => {
     element.remove();
+};
+
+const populateCountAndPriceFields = (input, pieceCounter, priceCounter) => {
+    if (input.validity.valid) {
+        pieceCounter.innerText = input.value === '1' ? 'бройка' : 'бройки';
+        priceCounter.innerText = `${input.value * 30}`;
+    }
 };

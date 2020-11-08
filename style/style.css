@@ -780,6 +780,27 @@ header.resized .navigation {
     cursor: default;
 }
 
+.purchase label {
+    position: relative;
+    top: 0;
+}
+
+.purchase input {
+    width: 10%;
+    text-align: center;
+    -moz-appearance: textfield;
+}
+
+.purchase input::-webkit-outer-spin-button,
+.purchase input::-webkit-inner-spin-button {
+    margin: 0;
+    -webkit-appearance: none;
+}
+
+.purchase .price {
+    color: #64dd17;
+}
+
 .agreement {
     display: flex;
 }
