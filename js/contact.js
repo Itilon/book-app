@@ -59,7 +59,7 @@ const resizeTextarea = (textarea) => {
 };
 
 const styleElementLabel = (element) => {
-    if (element.value) {
+    if (element.value && element.type !== 'checkbox') {
         element.labels[0].classList.add('top-positioned');
     } else if (element.labels[0].classList.contains('top-positioned')) {
         element.labels[0].classList.remove('top-positioned');

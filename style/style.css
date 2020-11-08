@@ -780,6 +780,45 @@ header.resized .navigation {
     cursor: default;
 }
 
+.agreement {
+    display: flex;
+}
+
+.agreement label {
+    position: relative;
+    top: -6px;
+    left: 10px;
+    font-size: 14px;
+}
+
+.agreement input {
+    width: 24px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.agreement input:valid + label {
+    top: -6px;
+    font-size: 14px;
+}
+
+.agreement .checkmark {
+    position: absolute;
+    top: 28px;
+    left: 4px;
+    height: 24px;
+    width: 24px;
+    border: 1px solid #fdab00;
+    pointer-events: none;
+    line-height: .8;
+}
+
+.agreement input:checked ~ .checkmark:before {
+    content: "\2713";
+    font-size: 28px;
+    color: #64dd17;
+}
+
 .contact-form button {
     background: rgb(2, 0, 36);
     background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(253, 171, 0, .8) 100%, rgba(0, 212, 255, 1) 100%);
