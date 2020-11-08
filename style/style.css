@@ -813,6 +813,11 @@ header.resized .navigation {
     line-height: .8;
 }
 
+.agreement input:checked ~ .checkmark {
+    background: #333;
+    border: 1px solid #64dd17;
+}
+
 .agreement input:checked ~ .checkmark:before {
     content: "\2713";
     font-size: 28px;

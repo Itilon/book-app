@@ -6,9 +6,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     form.addEventListener('submit', validateForm.bind(null, form));
 
-    inputs.forEach(input => {
-        input.addEventListener('keydown', checkForErrorMessage.bind(null, input));
-        input.addEventListener('focusout', styleElementLabel.bind(null, input));
+    inputs.forEach((input) => {
+        if (input.type !== 'checkbox') {
+            input.addEventListener('keydown', checkForErrorMessage.bind(null, input));
+            input.addEventListener('focusout', styleElementLabel.bind(null, input));
+        } else {
+            input.addEventListener('click', checkForErrorMessage.bind(null, input));
+        }
     });
 
     textarea.addEventListener('keydown', resizeTextarea.bind(null, textarea));
@@ -53,8 +57,10 @@ const populateErrorMessage = (element) => {
 };
 
 const checkForErrorMessage = (input) => {
-    if (input.validity.valid && [...input.parentElement.children].find((child) => child.classList.contains('error-message'))) {
+    if (input.type !== 'checkbox' && input.validity.valid && [...input.parentElement.children].find((child) => child.classList.contains('error-message'))) {
         removeElement([...input.parentElement.children].find((child) => child.classList.contains('error-message')));
+    } else if (input.validity.valid && [...input.parentElement.parentElement.children].find((child) => child.classList.contains('error-message'))) {
+        removeElement([...input.parentElement.parentElement.children].find((child) => child.classList.contains('error-message')));
     }
 };
 
@@ -64,7 +70,7 @@ const resizeTextarea = (textarea) => {
 };
 
 const styleElementLabel = (element) => {
-    if (element.value && element.type !== 'checkbox') {
+    if (element.value) {
         element.labels[0].classList.add('top-positioned');
     } else if (element.labels[0].classList.contains('top-positioned')) {
         element.labels[0].classList.remove('top-positioned');
