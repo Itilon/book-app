@@ -629,9 +629,67 @@ header.resized .navigation {
     color: #fdab00;
 }
 
+.text-wrapper .font-style-toggle {
+    text-align: center;
+}
+
+.text-wrapper label {
+    position: relative;
+    display: inline-block;
+    height: 35px;
+    width: 60px;
+}
+
+.text-wrapper input {
+    height: 0;
+    width: 0;
+    opacity: 0;
+}
+
+.text-wrapper .slider {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #888;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color .4s ease-in;
+}
+
+.text-wrapper .slider:before {
+    content: "";
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    height: 25px;
+    width: 25px;
+    background: #ddd;
+    border-radius: 50%;
+    transition: left .4s ease-in;
+}
+
+.text-wrapper input:checked + .slider {
+    background: #555;
+}
+
+.text-wrapper input:checked + .slider:before {
+    left: 30px;
+}
+
 .text-wrapper p {
     font-family: Marck-Script;
-    font-size: 18px;
+    font-size: 20px;
+    color: #ddd;
+}
+
+.text-wrapper.regular-font p {
+    font-family: PT-Italic;
+    font-size: 16px;
+}
+
+.text-wrapper a {
     color: #ddd;
 }
 
