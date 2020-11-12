@@ -29,13 +29,16 @@ const validateForm = (form) => {
 
     if (form.checkValidity()) {
         [...form.elements].forEach((element) => {
-            element.classList.remove('valid');
+            if (element.type !== 'submit') {
+                element.classList.remove('valid');
+                element.labels[0].classList.remove('top-positioned');
 
-            element.type !== 'checkbox' && element.type !== 'number' ?
-                element.value = '' :
-                element.type === 'checkbox' ?
-                    element.checked = false :
-                    element.value = '1';
+                element.type !== 'checkbox' && element.type !== 'number' ?
+                    element.value = '' :
+                    element.type === 'checkbox' ?
+                        element.checked = false :
+                        element.value = '1';
+            }
         });
     } else {
         [...form.elements].forEach((element) => {

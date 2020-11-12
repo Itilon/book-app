@@ -629,68 +629,23 @@ header.resized .navigation {
     color: #fdab00;
 }
 
-.text-wrapper .font-style-toggle {
-    text-align: center;
-}
-
-.text-wrapper label {
-    position: relative;
-    display: inline-block;
-    height: 35px;
-    width: 60px;
-}
-
-.text-wrapper input {
-    height: 0;
-    width: 0;
-    opacity: 0;
-}
-
-.text-wrapper .slider {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: #888;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: background-color .4s ease-in;
-}
-
-.text-wrapper .slider:before {
-    content: "";
-    position: absolute;
-    bottom: 5px;
-    left: 5px;
-    height: 25px;
-    width: 25px;
-    background: #ddd;
-    border-radius: 50%;
-    transition: left .4s ease-in;
-}
-
-.text-wrapper input:checked + .slider {
-    background: #555;
-}
-
-.text-wrapper input:checked + .slider:before {
-    left: 30px;
-}
-
 .text-wrapper p {
-    font-family: Marck-Script;
-    font-size: 20px;
-    color: #ddd;
-}
-
-.text-wrapper.regular-font p {
     font-family: PT-Italic;
-    font-size: 16px;
+    font-size: 17.2px;
+    color: #ddd;
 }
 
-.text-wrapper a {
+.text-wrapper .footnote-anchor {
     color: #ddd;
+}
+
+.text-wrapper span {
+    color: #fdab00;
+}
+
+.text-wrapper .footnote {
+    padding-top: 10px;
+    border-top: 1px dotted #ccc;
 }
 
 @media only screen and (max-width: 600px) {
@@ -712,10 +667,10 @@ header.resized .navigation {
 
 .contact-form {
     background: rgba(0, 0, 0, .2);
-    max-height: calc(100vh - 40px);
+    max-height: 80vh;
     width: 50%;
     margin: 60px auto;
-    padding: 10px;
+    padding: 10px 0 20px 0;
     border: 1px solid rgba(204, 204, 204, .6);
     border-radius: 5px;
     box-shadow: 8px 8px 0 rgba(80, 80, 80, .4);
@@ -890,10 +845,6 @@ header.resized .navigation {
     border: 1px solid #fdab00;
     pointer-events: none;
     line-height: .8;
-}
-
-.agreement input:focus ~ .checkmark {
-    background: #555;
 }
 
 .agreement input:checked ~ .checkmark {
