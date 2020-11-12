@@ -290,17 +290,19 @@ img.large {
     }
 }
 
+@media only screen and (max-width: 640px) {
+    .content-body-right, 
+    .top a, .bottom a,
+    .skewed .fa, .skewed .fa {
+        display: none;
+    }
+}
+
 @media only screen and (max-width: 600px) {
     .top-image,
     .bottom-image {
         top: 0;
         height: 100%;
-    }
-
-    .content-body-right, 
-    .top a, .bottom a,
-    .skewed .fa, .skewed .fa {
-        display: none;
     }
 
     .skewed .handle {
@@ -920,15 +922,22 @@ header.resized .navigation {
 
 @media only screen and (max-width: 600px) {
     .contact-form {
-        width: 80%;
+        width: 84%;
     }
 
     .contact-form form {
-        width: 100%;
+        width: 96%;
     }
 
     .form-control .tooltip:hover .tooltiptext {
         display: none;
+    }
+}
+
+
+@media only screen and (max-width: 360px) {
+    .contact-form {
+        width: 92%;
     }
 }
 
@@ -958,4 +967,11 @@ header.resized .navigation {
 .contact-form::-webkit-scrollbar-thumb:hover,
 .text-wrapper::-webkit-scrollbar-thumb:hover {
     background: #888; 
+}
+
+@media only screen and (max-width: 640px) {
+    .contact-form::-webkit-scrollbar,
+    .text-wrapper::-webkit-scrollbar {
+        width: 4px;
+    }
 }

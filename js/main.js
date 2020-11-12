@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const main = document.querySelector('.main');
     const topLayer = main.querySelector('.top');
+    const bottomLayer = main.querySelector('.bottom');
     const handle = main.querySelector('.handle');
     const rightArrow = main.querySelector('.fa-arrow-circle-right');
     const leftArrow = main.querySelector('.fa-arrow-circle-left');
@@ -12,8 +13,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let centered = true;
 
     this.addEventListener('orientationchange', onOrientationChange.bind(null, handle, topLayer));
+    
+    [topLayer, bottomLayer].forEach((layer) => {
+        layer.addEventListener('touchstart', onLayerClick.bind(null, layer));
+        layer.addEventListener('click', onLayerClick.bind(null, layer));
+    });
 
-    images.forEach(image => {
+    images.forEach((image) => {
         image.addEventListener('mouseenter', () => {
             if (!centered) { image.classList.add('large'); }
         });
@@ -72,6 +78,12 @@ const onImageClick = (image) => {
         window.location = image.classList.contains('top-image') ? '/gallery.html' : '/contact.html';
     }
 };
+
+const onLayerClick = (layer) => {
+    if (this.innerWidth <= 640) {
+        window.location = layer.classList.contains('top') ? '/gallery.html' : '/contact.html';
+    }
+}
 
 const styleHandleAndTopLayer = (handle, topLayer, value) => {
     handle.style.left = value + '%';
