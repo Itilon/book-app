@@ -432,6 +432,17 @@ header.resized .navigation {
     }
 }
 
+@media only screen and (max-width: 640px) and (max-height: 360px) {
+    .navigation {
+        padding-right: 0;
+        text-align: center;
+    }
+
+    .navigation ul {
+        padding-inline-start: 0;
+    }
+}
+
 /* GALLERY PAGE */
 
 .gallery {
@@ -601,6 +612,13 @@ header.resized .navigation {
     }
 }
 
+
+@media only screen and (max-width: 640px) and (max-height: 360px) {
+    .image-wrapper {
+        margin-top: 8vh;
+    }
+}
+
 /* AUTHOR & BOOK PAGE */
 
 .text-container {
@@ -650,9 +668,15 @@ header.resized .navigation {
     border-top: 1px dotted #ccc;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 640px) and (max-height: 360px) {
     .text-wrapper {
-        width: 80%;
+        margin-top: 20px;
+    }
+}
+
+@media only screen and (max-width: 640px) {
+    .text-wrapper {
+        width: 84%;
     }
 }
 
@@ -920,11 +944,13 @@ header.resized .navigation {
     }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 640px) {
     .contact-form {
         width: 84%;
     }
+}
 
+@media only screen and (max-width: 600px) {
     .contact-form form {
         width: 96%;
     }
@@ -938,6 +964,12 @@ header.resized .navigation {
 @media only screen and (max-width: 360px) {
     .contact-form {
         width: 92%;
+    }
+}
+
+@media only screen and (max-width: 640px) and (max-height: 360px) {
+    .contact-form {
+        margin-top: 20px;
     }
 }
 
