@@ -16,7 +16,17 @@ document.addEventListener('DOMContentLoaded', () => {
     images.forEach(image => {
         image.addEventListener('click', resizeImage.bind(null, image, main));
         image.addEventListener('touchstart', onTouchStart);
+        image.addEventListener('mousedown', () => {
+            if (this.getComputedStyle(rightArrow).display === 'none') {
+                onTouchStart();
+            }
+        });
         image.addEventListener('touchmove', onTouchMove.bind(null, image, imageContainers));
+        image.addEventListener('mousemove', () => {
+            if (this.getComputedStyle(rightArrow).display === 'none') {
+                onTouchMove(image, imageContainers);
+            }
+        });
     });
     imageWrapper.addEventListener('click', downsizeImage.bind(null, imageWrapper, main));
     imageOverlay.addEventListener('click', downsizeImage.bind(null, imageOverlay, main));
@@ -134,16 +144,16 @@ const removeResizedClass = (main) => {
 };
 
 const onTouchStart = () => {
-    this.xDown = this.event.touches[0].clientX;
-    this.yDown = this.event.touches[0].clientY;
+    this.xDown = this.event.touches ? this.event.touches[0].clientX : this.event.clientX;
+    this.yDown = this.event.touches ? this.event.touches[0].clientY : this.event.clientY;
 };
 
 const onTouchMove = (image, imageContainers) => {
     let visibleImageChanged = false;
 
     if (!image.classList.contains('resized') && this.xDown) {
-        const xUp = this.event.touches[0].clientX;
-        const yUp = this.event.touches[0].clientY;                                    
+        const xUp = this.event.touches ? this.event.touches[0].clientX : this.event.clientX;
+        const yUp = this.event.touches ? this.event.touches[0].clientY : this.event.clientY;                                    
 
         const xDiff = this.xDown - xUp;
         const yDiff = this.yDown - yUp;
