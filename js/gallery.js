@@ -158,7 +158,7 @@ const onTouchMove = (image, imageContainers) => {
         const xDiff = this.xDown - xUp;
         const yDiff = this.yDown - yUp;
 
-        if ((Math.abs(xDiff) > Math.abs(yDiff)) && xDiff > 0) {
+        if ((Math.abs(xDiff) > Math.abs(yDiff)) && (this.event.movementX < 0 || xDiff > 1)) {
             imageContainers.forEach((container, i) => {
                 if (container.classList.contains(('visible-item')) && !visibleImageChanged) {
                     container.classList.remove('visible-item');
@@ -187,7 +187,7 @@ const onTouchMove = (image, imageContainers) => {
                     visibleImageChanged = true;
                 }
             });
-        } else if ((Math.abs(xDiff) > Math.abs(yDiff))) {
+        } else if ((Math.abs(xDiff) > Math.abs(yDiff)) && (this.event.movementX > 0 || xDiff < -1)) {
             imageContainers.forEach((container, i) => {
                 if (container.classList.contains(('visible-item')) && !visibleImageChanged) {
                     container.classList.remove('visible-item');
