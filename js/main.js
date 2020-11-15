@@ -80,7 +80,7 @@ const onImageClick = (image) => {
 };
 
 const onLayerClick = (layer) => {
-    if (this.innerWidth <= 640) {
+    if (this.innerWidth <= 600) {
         window.location = layer.classList.contains('top') ? '/gallery.html' : '/contact.html';
     }
 }
