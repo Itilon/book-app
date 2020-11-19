@@ -359,6 +359,11 @@ img.large {
         font-size: 20px;
     }
 
+    .bottom .content-body-left article:nth-child(3),
+    .content-body-right article:nth-child(2) {
+        display: none;
+    }
+
     .top a, .bottom a {
         width: 92%;
     }
@@ -668,8 +673,8 @@ header.resized .navigation {
     }
 
     
-.image-text-container .image-text {
-    font-size: 17.2px;
+    .image-text-container .image-text {
+        font-size: 17.2px;
     }
 }
 
