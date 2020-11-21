@@ -12,7 +12,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let centered = true;
 
-    this.addEventListener('orientationchange', onOrientationChange.bind(null, handle, topLayer));
+    this.addEventListener('orientationchange', () => {
+        if (!centered) {
+            centered = true;
+            onOrientationChange(handle, topLayer);
+
+            if (rightArrow.style.opacity === '0') {
+                styleArrow(rightArrow, 1, 5);
+                bottomButton.classList.remove('hidden');
+            } else {
+                styleArrow(leftArrow, 1, 5);
+                topButton.classList.remove('hidden');
+                bottomArticles.forEach(article => article.classList.add('hidden'));
+            }
+        }
+    });
     
     [topLayer, bottomLayer].forEach((layer) => {
         layer.addEventListener('touchstart', onLayerClick.bind(null, layer));
@@ -68,9 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const onOrientationChange = (handle, topLayer) => {
-    if (this.innerWidth <= 600) {
-        styleHandleAndTopLayer(handle, topLayer, 50);
-    }
+    styleHandleAndTopLayer(handle, topLayer, 50);
 };
 
 const onImageClick = (image) => {
