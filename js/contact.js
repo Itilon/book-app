@@ -54,7 +54,9 @@ const populateErrorMessage = (element) => {
 
     const errorMessageContainer = createElement('div', ['error-message'], null);
     const errorIcon = createElement('i', ['fa', 'fa-exclamation-triangle'], null);
-    const errorMessage = createElement('p', null, 'Моля, попълни това поле правилно!')
+    const errorMessage = element.type === 'checkbox' ?
+        createElement('p', null, 'Моля, приемете условията на сайта!') :
+        createElement('p', null, 'Моля, попълнете това поле правилно!')
     const exitBtn = createElement('span', ['exit-btn'], '&#10005;');
 
     errorMessageContainer.appendChild(errorIcon);
