@@ -708,6 +708,10 @@ header.resized .navigation {
     color: #fdab00;
 }
 
+.text-wrapper img {
+    width: 100%;
+}
+
 .text-wrapper p {
     font-family: PT-Italic;
     font-size: 17.2px;
