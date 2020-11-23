@@ -556,7 +556,8 @@ header.resized .navigation {
 
 .gallery-item {
     margin-top: 0;
-    height: 100%;
+    max-height: 100%;
+    max-width: 96%;
     transition: all .6s ease-in-out;
 }
 
@@ -611,7 +612,7 @@ header.resized .navigation {
     color: #ccc;
 }
 
-@media only screen and (max-width: 1260px) {
+@media only screen and (max-width: 1368px) {
     .image-text-container:nth-child(even),
     .image-text-container:nth-child(odd) {
         width: 25vw;
@@ -659,6 +660,11 @@ header.resized .navigation {
 @media only screen and (max-width: 600px) {
     .image-wrapper {
         width: 100vw;
+        margin-top: 16vh;
+    }
+
+    .gallery-item-container.resized {
+        width: 100%;
     }
 }
 
@@ -670,6 +676,10 @@ header.resized .navigation {
 
     .image-wrapper .fa {
         display: none;
+    }
+
+    .gallery-item.resized {
+        margin-top: -32px;  
     }
 
     
@@ -709,7 +719,9 @@ header.resized .navigation {
 }
 
 .text-wrapper img {
-    width: 100%;
+    display: block;
+    width: 60%;
+    margin: auto;
 }
 
 .text-wrapper p {
