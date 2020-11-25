@@ -40,7 +40,14 @@ const validateForm = (form) => {
                         element.value = '1';
             }
         });
+
+        populateSuccessMessage(form);
+
     } else {
+        if ([...form.children].find((child) => child.classList.contains('success-message'))) {
+            removeElement([...form.children].find((child) => child.classList.contains('success-message')));
+        }
+
         [...form.elements].forEach((element) => {
             if (!element.validity.valid && ![...element.parentElement.children].find((child) => child.classList.contains('error-message'))) {
                 populateErrorMessage(element);
@@ -49,14 +56,31 @@ const validateForm = (form) => {
     }
 };
 
+const populateSuccessMessage = (element) => {
+    const successMessageContainer = createElement('div', ['success-message'], null);
+    const successIcon = createElement('i', ['fa', 'fa-check'], null);
+    const successMessage = createElement('p', null, 'Поръчката ти е изпратена успешно.');
+    const exitBtn = createElement('span', ['exit-btn'], '&#10005');
+
+    successMessageContainer.appendChild(successIcon);
+    successMessageContainer.appendChild(successMessage);
+    successMessageContainer.appendChild(exitBtn);
+    
+    element.prepend(successMessageContainer);
+
+    setTimeout(() => successMessageContainer.classList.add('show'), 0);
+
+    exitBtn.addEventListener('click', () => removeElement(successMessageContainer));
+}
+
 const populateErrorMessage = (element) => {
     element.classList.add('invalid');
 
     const errorMessageContainer = createElement('div', ['error-message'], null);
     const errorIcon = createElement('i', ['fa', 'fa-exclamation-triangle'], null);
     const errorMessage = element.type === 'checkbox' ?
-        createElement('p', null, 'Моля, приемете условията на сайта!') :
-        createElement('p', null, 'Моля, попълнете това поле правилно!')
+        createElement('p', null, 'Моля, приеми условията на сайта!') :
+        createElement('p', null, 'Моля, попълни това поле правилно!')
     const exitBtn = createElement('span', ['exit-btn'], '&#10005;');
 
     errorMessageContainer.appendChild(errorIcon);

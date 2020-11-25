@@ -282,6 +282,13 @@ img.large {
     }
 }
 
+@media only screen and (max-width: 1060px) {
+    .bottom .content-body-left article:nth-child(3),
+    .content-body-right article:nth-child(2) {
+        display: none;
+    }
+}
+
 @media only screen and (max-width: 780px) {
     .top-image,
     .bottom-image {
@@ -289,13 +296,15 @@ img.large {
         height: 50%;
     }
 
+    .top a, .bottom a {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 724px) {
     .top-article,
     .bottom-article {
         display: none;
-    }
-
-    .top a, .bottom a {
-        font-size: 14px;
     }
 }
 
@@ -357,11 +366,6 @@ img.large {
     .content-body-left h1 {
         margin-block-start: 0;
         font-size: 20px;
-    }
-
-    .bottom .content-body-left article:nth-child(3),
-    .content-body-right article:nth-child(2) {
-        display: none;
     }
 
     .top a, .bottom a {
@@ -975,8 +979,8 @@ header.resized .navigation {
     border-bottom-color: rgb(118, 118, 118);
 }
 
+.success-message,
 .error-message {
-    background: rgba(60, 60, 60, 0.8);
     margin: 10px 0;
     padding: 0 5px;
     display: flex;
@@ -988,14 +992,20 @@ header.resized .navigation {
     transition: opacity .8s ease-in-out;
 }
 
+.success-message {
+    background: rgba(100, 221, 23, 0.8);
+}
+
+.error-message {
+    background: rgba(60, 60, 60, 0.8);
+}
+
+.success-message.show,
 .error-message.show {
     opacity: 1;
 }
 
-.error-message .fa-exclamation-triangle {
-    color: #f12617;
-}
-
+.success-message p,
 .error-message p {
     display: inline-block;
     width: 90%;
@@ -1005,14 +1015,26 @@ header.resized .navigation {
     text-align: left;
 }
 
+.success-message .exit-btn,
 .error-message .exit-btn {
     display: inline-block;
     padding: 0 5px;
     font-size: 13px;
-    color: #f12617;
     cursor: pointer;
 }
 
+.success-message .fa-check,
+.success-message p,
+.success-message .exit-btn {
+    color: #fff;
+}
+
+
+.error-message .fa-exclamation-triangle,
+.error-message p,
+.error-message .exit-btn {
+    color: #f12617;
+}
 
 @media only screen and (max-width: 1260px) {
     .error-message p {
@@ -1078,7 +1100,7 @@ header.resized .navigation {
     background: #888; 
 }
 
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 824px) {
     .contact-form::-webkit-scrollbar,
     .text-wrapper::-webkit-scrollbar {
         width: 4px;
