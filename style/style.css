@@ -229,6 +229,11 @@ img.large {
     transition: left .6s ease-in-out;
 }
 
+.content-wrap .fa-shopping-cart,
+.content-wrap .fa-file-picture-o {
+    display: none;
+}
+
 .fa-arrow-circle-right {
     position: absolute;
     top: 50%;
@@ -320,7 +325,6 @@ img.large {
 }
 
 @media only screen and (max-width: 600px) {
-    .contet-body-right,
     .top a, .bottom a {
         display: none;
     }
@@ -354,6 +358,27 @@ img.large {
     .content-body-left h1 {
         margin-block-start: 0;
         text-align: center;
+    }
+
+    .content-wrap .fa-shopping-cart,
+    .content-wrap .fa-file-picture-o {
+        background: rgba(60, 60, 60, .6);
+        position: absolute;
+        display: inline-block;
+        padding: 5px;
+        color: #ccc;
+        z-index: 5;
+        border: 2px solid #ccc;
+    }
+
+    .content-wrap .fa-shopping-cart {
+        top: 45%;
+        left: 5%;
+    }
+
+    .content-wrap .fa-file-picture-o {
+        top: 45%;
+        right: 5%;
     }
 }
 

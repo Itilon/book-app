@@ -87,13 +87,13 @@ const onOrientationChange = (handle, topLayer) => {
 
 const onImageClick = (image) => {
     if (this.innerWidth <= 600) {
-        window.location = image.classList.contains('top-image') ? '/gallery.html' : '/purchase.html';
+        window.location = image.classList.contains('top-image') ? '/purchase.html' : '/gallery.html';
     }
 };
 
 const onLayerClick = (layer) => {
     if (this.innerWidth <= 600) {
-        window.location = layer.classList.contains('top') ? '/gallery.html' : '/purchase.html';
+        window.location = layer.classList.contains('top') ? '/purchase.html' : '/gallery.html';
     }
 }
 
