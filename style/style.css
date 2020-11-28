@@ -76,7 +76,7 @@ a.hidden {
     background: rgba(204, 204, 204, .6);
     z-index: 2;
     width: 50vw;
-    transition: width .8s ease-in-out;
+    transition: width .6s ease-in-out;
 }
 
 .skewed .top {
@@ -115,7 +115,7 @@ a.hidden {
     font-weight: bold;
     color: #ccc;
     text-transform: uppercase;
-    transition: opacity 1.2s ease-in-out;
+    transition: opacity .8s ease-in-out;
 }
 
 .top article {
@@ -165,7 +165,7 @@ a.hidden {
     font-weight: bold;
     color: #ccc;
     text-transform: uppercase;
-    transition: opacity 1.2s ease-in-out;
+    transition: opacity .8s ease-in-out;
 }
 
 .bottom-article {
@@ -226,7 +226,7 @@ img.large {
     transform: rotate(37deg) translateY(-50%);
     height: 200%;
     transform-origin: top;
-    transition: left .8s ease-in-out;
+    transition: left .6s ease-in-out;
 }
 
 .fa-arrow-circle-right {
@@ -235,7 +235,7 @@ img.large {
     right: 2%;
     z-index: 5;
     cursor: pointer;
-    transition: all 1s ease-in-out;
+    transition: all .6s ease-in-out;
 }
 
 .fa-arrow-circle-right:before {
@@ -248,7 +248,7 @@ img.large {
     left: 2%;
     z-index: 5;
     cursor: pointer;
-    transition: all 1s ease-in-out;
+    transition: all .6s ease-in-out;
 }
 
 .fa-arrow-circle-right:hover,
@@ -760,7 +760,7 @@ header.resized .navigation {
     }
 }
 
-/* CONTACT PAGE */
+/* PURCHASE PAGE */
 
 .contact {
     background: rgba(0, 0, 0, .8);
@@ -993,11 +993,11 @@ header.resized .navigation {
 }
 
 .success-message {
-    background: rgba(100, 221, 23, 0.8);
+    background: rgba(100, 221, 23, .8);
 }
 
 .error-message {
-    background: rgba(60, 60, 60, 0.8);
+    background: rgba(60, 60, 60, .8);
 }
 
 .success-message.show,
