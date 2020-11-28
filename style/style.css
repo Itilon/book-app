@@ -121,17 +121,18 @@ a.hidden {
     transition: opacity .8s ease-in-out;
 }
 
-.top article {
+.top-article {
     margin-bottom: 10px;
 }
 
-.top q {
+.top-article q {
     font-family: Marck-Script;
     font-size: 20px;
     color: #fff;
 }
 
-.top p {
+.top-article p {
+    margin-block-start: .5em;
     font-family: Thorn-Valley;
     font-size: 22px;
     color: #42300b;
@@ -185,6 +186,7 @@ a.hidden {
 }
 
 .bottom-article p {
+    margin-block-start: .5em;
     font-family: Thorn-Valley;
     font-size: 22px;
     color: #fdab00;
@@ -287,16 +289,16 @@ a.hidden {
 @media only screen and (max-width: 860px) {
     .content-body-right,
     .content-body-left {
-        width: 35%;
+        width: 30%;
     }
 
     .image-container {
-        width: 30%;
+        width: 40%;
     }
 
     .content-body-left h1 {
         margin-block-start: 0;
-        font-size: 19.2px;
+        font-size: 20px;
     }
 
     .image-container img {
@@ -306,9 +308,18 @@ a.hidden {
     .top a, .bottom a {
         font-size: 14px;
     }
+
+    .bottom-article:nth-child(2) {
+        margin-top: 40px;
+    }
+
+    .top-article q,
+    .bottom-article q {
+        font-size: 18px;
+    }
 }
 
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 668px) {
     .skewed .fa, .skewed .fa {
         display: none;
     }

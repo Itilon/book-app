@@ -1,10 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     const main = document.querySelector('.main');
     const topLayer = main.querySelector('.top');
-    const bottomLayer = main.querySelector('.bottom');
     const handle = main.querySelector('.handle');
     const rightArrow = main.querySelector('.fa-arrow-circle-right');
     const leftArrow = main.querySelector('.fa-arrow-circle-left');
+    const galleryImage = main.querySelector('.fa-file-picture-o');
+    const shoppingCartImage = main.querySelector('.fa-shopping-cart');
     const images = main.querySelectorAll('img');
     const topButton = main.querySelector('.top a');
     const bottomButton = main.querySelector('.bottom a');
@@ -27,11 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
-    
-    [topLayer, bottomLayer].forEach((layer) => {
-        layer.addEventListener('touchstart', onLayerClick.bind(null, layer));
-        layer.addEventListener('click', onLayerClick.bind(null, layer));
-    });
 
     images.forEach((image) => {
         image.addEventListener('mouseenter', () => {
@@ -41,7 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
         image.addEventListener('mouseleave', () => {
             if (!centered) { image.classList.remove('large'); }
         });
+    });
 
+    [galleryImage, shoppingCartImage].forEach((image) => {
         image.addEventListener('touchstart', onImageClick.bind(null, image));
         image.addEventListener('click', onImageClick.bind(null, image));
     });
@@ -86,16 +84,10 @@ const onOrientationChange = (handle, topLayer) => {
 };
 
 const onImageClick = (image) => {
-    if (this.innerWidth <= 600) {
-        window.location = image.classList.contains('top-image') ? '/purchase.html' : '/gallery.html';
+    if (this.innerWidth <= 560) {
+        window.location = image.classList.contains('fa-shopping-cart') ? '/purchase.html' : '/gallery.html';
     }
 };
-
-const onLayerClick = (layer) => {
-    if (this.innerWidth <= 600) {
-        window.location = layer.classList.contains('top') ? '/purchase.html' : '/gallery.html';
-    }
-}
 
 const styleHandleAndTopLayer = (handle, topLayer, value) => {
     handle.style.left = value + '%';
