@@ -28,21 +28,40 @@ const validateForm = (form) => {
     this.event.preventDefault();
 
     if (form.checkValidity()) {
-        [...form.elements].forEach((element) => {
-            if (element.type !== 'submit') {
-                element.classList.remove('valid');
-                element.labels[0].classList.remove('top-positioned');
+        sendFormData(form)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error();
+                }
 
-                element.type !== 'checkbox' && element.type !== 'number' ?
-                    element.value = '' :
-                    element.type === 'checkbox' ?
-                        element.checked = false :
-                        element.value = '1';
-            }
-        });
+                [...form.elements].forEach((element) => {
+                    if (element.type !== 'submit') {
+                        element.classList.remove('valid');
+                        element.labels[0].classList.remove('top-positioned');
 
-        populateSuccessMessage(form);
+                        element.type !== 'checkbox' && element.type !== 'number' ?
+                            element.value = '' :
+                            element.type === 'checkbox' ?
+                                element.checked = false :
+                                element.value = '1';
+                    }
+                });
 
+                populateFormMessage(form, true);
+            })
+            .catch(() => {
+                [...form.elements].forEach((element) => {
+                    if (element.type !== 'submit') {
+                        element.classList.remove('valid');
+
+                        if (element.type === 'checkbox') {
+                            element.checked = false;
+                        }
+                    };
+                });
+
+                populateFormMessage(form, false);
+            });
     } else {
         if ([...form.children].find((child) => child.classList.contains('success-message'))) {
             removeElement([...form.children].find((child) => child.classList.contains('success-message')));
@@ -56,21 +75,40 @@ const validateForm = (form) => {
     }
 };
 
-const populateSuccessMessage = (element) => {
-    const successMessageContainer = createElement('div', ['success-message'], null);
-    const successIcon = createElement('i', ['fa', 'fa-check'], null);
-    const successMessage = createElement('p', null, 'Поръчката ти е изпратена успешно.');
+const sendFormData = (form) => {
+    const endpoint = form.action;
+    const method = form.method;
+    const formData = new FormData(form);
+    const data = {}
+    formData.forEach((value, key) => data[key] = value);
+
+    return fetch(
+        endpoint,
+        {
+            method,
+            body: JSON.stringify(data),
+            headers: { Accept: "application/json", "Content-Type": "application/json" }
+        }
+    );
+};
+
+const populateFormMessage = (form, isSuccess) => {
+    const messageContainer = isSuccess ? createElement('div', ['success-message'], null) : createElement('div', ['error-message'], null);
+    const icon = isSuccess ? createElement('i', ['fa', 'fa-check'], null) : createElement('i', ['fa', 'fa-exclamation-triangle'], null);;
+    const message = isSuccess ?
+        createElement('p', null, 'Поръчката ти е изпратена успешно.') :
+        createElement('p', null, 'Нещо се обърка. Моля, опитай отново!');
     const exitBtn = createElement('span', ['exit-btn'], '&#10005');
 
-    successMessageContainer.appendChild(successIcon);
-    successMessageContainer.appendChild(successMessage);
-    successMessageContainer.appendChild(exitBtn);
+    messageContainer.appendChild(icon);
+    messageContainer.appendChild(message);
+    messageContainer.appendChild(exitBtn);
     
-    element.prepend(successMessageContainer);
+    form.prepend(messageContainer);
 
-    setTimeout(() => successMessageContainer.classList.add('show'), 0);
+    setTimeout(() => messageContainer.classList.add('show'), 0);
 
-    exitBtn.addEventListener('click', () => removeElement(successMessageContainer));
+    exitBtn.addEventListener('click', () => removeElement(messageContainer));
 }
 
 const populateErrorMessage = (element) => {
@@ -99,10 +137,12 @@ const populateErrorMessage = (element) => {
 };
 
 const checkForErrorMessage = (input) => {
-    if (input.type !== 'checkbox' && input.validity.valid && [...input.parentElement.children].find((child) => child.classList.contains('error-message'))) {
-        removeElement([...input.parentElement.children].find((child) => child.classList.contains('error-message')));
-    } else if (input.validity.valid && [...input.parentElement.parentElement.children].find((child) => child.classList.contains('error-message'))) {
-        removeElement([...input.parentElement.parentElement.children].find((child) => child.classList.contains('error-message')));
+    const inputParent = input.parentElement;
+
+    if (input.type !== 'checkbox' && input.validity.valid && [...inputParent.children].find((child) => child.classList.contains('error-message'))) {
+        removeElement([...inputParent.children].find((child) => child.classList.contains('error-message')));
+    } else if (input.validity.valid && [...inputParent.parentElement.children].find((child) => child.classList.contains('error-message'))) {
+        removeElement([...inputParent.parentElement.children].find((child) => child.classList.contains('error-message')));
     }
 };
 

@@ -24,27 +24,27 @@
         </header>
         <div class="contact">
             <div class="contact-form">
-                <form action="" method="POST" enctype="text/plain" novalidate>
+                <form action="https://formspree.io/f/mzbkaaey" method="POST" enctype="text/plain" novalidate>
                     <div class="form-control">
-                        <input id="name" type="text" minlength="5" required>
+                        <input id="name" name="name" type="text" minlength="5" required>
                         <label for="name">
                             Име и фамилия <span class="tooltip">* <span class="tooltiptext">Задължително поле</span></span>
                         </label>
                     </div>
                     <div class="form-control">
-                        <input id="email" type="email" minlength="5" required>
+                        <input id="email" name="email" type="email" minlength="5" required>
                         <label for="email">
                             Електронна поща <span class="tooltip">* <span class="tooltiptext">Задължително поле</span></span>
                         </label>
                     </div>
                     <div class="form-control">
-                        <input id="address" type="text" minlength="5" required>
+                        <input id="address" name="address" type="text" minlength="5" required>
                         <label for="address">
                             Адрес за доставка <span class="tooltip">* <span class="tooltiptext">Задължително поле</span></span>
                         </label>
                     </div>
                     <div class="form-control">
-                        <input id="telephone" type="tel" minlength="5" pattern="^[0-9 +-\/]*$" required>
+                        <input id="telephone" name="telephone" type="tel" minlength="5" pattern="^[0-9 +-\/]*$" required>
                         <label for="telephone">
                             Телефонен номер <span class="tooltip">* <span class="tooltiptext">Задължително поле</span></span>
                         </label>
@@ -52,7 +52,7 @@
                     <div class="form-control purchase">
                         <label>
                             Искам да поръчам
-                            <input type="number" value="1" min="1" max="50" required>
+                            <input type="number" name="number" value="1" min="1" max="50" required>
                             <span class="piece-count">бройка</span>
                             от книгата. Цена (с доставката):
                             <span class="price">30</span>
@@ -60,12 +60,12 @@
                         </label>
                     </div>
                     <div class="form-control">
-                        <textarea id="comment" rows="1"></textarea>
+                        <textarea id="comment" name="comment" rows="1"></textarea>
                         <label for="comment">Пояснение към поръчката</label>
                     </div>
                     <div class="form-control">
                         <div class="agreement">
-                            <input id="agreement" type="checkbox" required>
+                            <input id="agreement" name="agreement" type="checkbox" required>
                             <span class="checkmark"></span>
                             <label for="agreement">
                                 Съгласен съм личните ми данни да бъдат обработени от сайта с цел изпълнение на направената поръчка.
