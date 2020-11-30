@@ -85,7 +85,7 @@ const onOrientationChange = (handle, topLayer) => {
 
 const onImageClick = (image) => {
     if (this.innerWidth <= 560) {
-        window.location = image.classList.contains('fa-shopping-cart') ? '/purchase.html' : '/gallery.html';
+        window.location = image.classList.contains('fa-shopping-cart') ? '/order.html' : '/gallery.html';
     }
 };
 
