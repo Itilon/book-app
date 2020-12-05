@@ -240,7 +240,6 @@ a.hidden {
     right: 2%;
     z-index: 5;
     cursor: pointer;
-    transform: translateY(-50%);
     transition: all .6s ease-in-out;
 }
 
@@ -254,7 +253,6 @@ a.hidden {
     left: 2%;
     z-index: 5;
     cursor: pointer;
-    transform: translateY(-50%);
     transition: all .6s ease-in-out;
 }
 
@@ -507,10 +505,12 @@ header.resized .navigation {
 
 .image-wrapper .fa-arrow-circle-right {
     right: 20px;
+    transform: translateY(-50%);
 }
 
 .image-wrapper .fa-arrow-circle-left {
-    left: 20px
+    left: 20px;
+    transform: translateY(-50%);
 }
 
 .image-wrapper .fa-arrow-circle-left:before {
