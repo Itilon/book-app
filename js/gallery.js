@@ -1,6 +1,3 @@
-window.xDown = null;
-window.yDown = null;
-
 document.addEventListener('DOMContentLoaded', () => {
     const main = document.querySelector('.main');
     const rightArrow = main.querySelector('.fa-arrow-circle-right');
@@ -8,58 +5,52 @@ document.addEventListener('DOMContentLoaded', () => {
     const imageWrapper = main.querySelector('.image-wrapper');
     const imageOverlay = main.querySelector('.image-overlay');
 
-    const imageContainers = Array.from(main.querySelectorAll('.gallery-item-container'));
-    const images = main.querySelectorAll('.gallery-item');
+    const images = Array.from(main.querySelectorAll('.gallery-item'));
 
-    rightArrow.addEventListener('click', rightSlide.bind(null, rightArrow, imageContainers));
-    leftArrow.addEventListener('click', leftSlide.bind(null, leftArrow, imageContainers));
+    rightArrow.addEventListener('click', rightSlide.bind(null, images));
+    leftArrow.addEventListener('click', leftSlide.bind(null, images));
+
     images.forEach(image => {
         image.addEventListener('click', resizeImage.bind(null, image, main));
-        image.addEventListener('touchstart', onTouchStart);
-        image.addEventListener('mousedown', () => {
-            if (this.getComputedStyle(rightArrow).display === 'none') {
-                onTouchStart();
-            }
-        });
-        image.addEventListener('touchmove', onTouchMove.bind(null, image, imageContainers));
-        image.addEventListener('mousemove', () => {
-            if (this.getComputedStyle(rightArrow).display === 'none') {
-                onTouchMove(image, imageContainers);
-            }
-        });
     });
+
     imageWrapper.addEventListener('click', downsizeImage.bind(null, imageWrapper, main));
     imageOverlay.addEventListener('click', downsizeImage.bind(null, imageOverlay, main));
 });
 
-const rightSlide = (rightArrow, imageContainers) => {
+const rightSlide = (images) => {
     let visibleImageChanged = false;
 
-    if (this.event.detail === 1 && !rightArrow.classList.contains('hidden')) {
-        imageContainers.forEach((container, i) => {
-            if (container.classList.contains(('visible-item')) && !visibleImageChanged) {
-                container.classList.remove('visible-item');
+    if (this.event.detail === 1) {
+        images.forEach((image, i) => {
+            if (image.classList.contains(('visible-item')) && !visibleImageChanged) {
+                image.classList.remove('visible-item');
+
+                const currentTextItemClass = [...image.classList].find(classListMember => classListMember.includes('item-'));
     
-                const previousContainer = imageContainers.find(container => container.classList.contains('previous-item'));
-                previousContainer.classList.remove('previous-item');
-                previousContainer.classList.add('visible-item');
+                const previousImage = images.find(image => image.classList.contains('previous-item'));
+                previousImage.classList.remove('previous-item');
+                previousImage.classList.add('visible-item');
+
+                const nextTextItemClass = [...previousImage.classList].find(classListMember => classListMember.includes('item-'));
     
-                const nextContainer = imageContainers.find(container => container.classList.contains('next-item'));
-                nextContainer.classList.remove('next-item');
+                const nextImage = images.find(image => image.classList.contains('next-item'));
+                nextImage.classList.remove('next-item');
     
-                container.classList.add('next-item');
+                image.classList.add('next-item');
                 
-                if (imageContainers[i - 2]) {
-                    imageContainers[i - 2].classList.add('previous-item');
-                } else if (imageContainers[i - 1]) {
-                    imageContainers[imageContainers.length - 1].classList.add('previous-item');
+                if (images[i - 2]) {
+                    images[i - 2].classList.add('previous-item');
+                } else if (images[i - 1]) {
+                    images[images.length - 1].classList.add('previous-item');
                 } else {
-                    imageContainers[imageContainers.length - 2].classList.add('previous-item');
+                    images[images.length - 2].classList.add('previous-item');
                 }
 
-                const textContainers = document.querySelectorAll('.image-text-container');
-                textContainers[i].classList.add('hidden');
-                textContainers[i - 1] ? textContainers[i - 1].classList.remove('hidden') : textContainers[imageContainers.length - 1].classList.remove('hidden');
+                const currentArticle = document.querySelector(`.image-text-container .${currentTextItemClass}`);
+                currentArticle.classList.add('hidden');
+                const nextArticle = document.querySelector(`.image-text-container .${nextTextItemClass}`);
+                nextArticle.classList.remove('hidden');
     
                 visibleImageChanged = true;
             }
@@ -67,34 +58,39 @@ const rightSlide = (rightArrow, imageContainers) => {
     }
 };
 
-const leftSlide = (leftArrow, imageContainers) => {
+const leftSlide = (images) => {
     let visibleImageChanged = false;
 
-    if (this.event.detail === 1 && !leftArrow.classList.contains('hidden')) {
-        imageContainers.forEach((container, i) => {
-            if (container.classList.contains(('visible-item')) && !visibleImageChanged) {
-                container.classList.remove('visible-item');
+    if (this.event.detail === 1) {
+        images.forEach((image, i) => {
+            if (image.classList.contains(('visible-item')) && !visibleImageChanged) {
+                image.classList.remove('visible-item');
+
+                const currentTextItemClass = [...image.classList].find(classListMember => classListMember.includes('item-'));
     
-                const nextContainer = imageContainers.find(container => container.classList.contains('next-item'));
-                nextContainer.classList.remove('next-item');
-                nextContainer.classList.add('visible-item');
+                const nextImage = images.find(image => image.classList.contains('next-item'));
+                nextImage.classList.remove('next-item');
+                nextImage.classList.add('visible-item');
+
+                const nextTextItemClass = [...nextImage.classList].find(classListMember => classListMember.includes('item-'));
     
-                const previousContainer = imageContainers.find(container => container.classList.contains('previous-item'));
-                previousContainer.classList.remove('previous-item');
+                const previousImage = images.find(image => image.classList.contains('previous-item'));
+                previousImage.classList.remove('previous-item');
     
-                container.classList.add('previous-item');
+                image.classList.add('previous-item');
                 
-                if (imageContainers[i + 2]) {
-                    imageContainers[i + 2].classList.add('next-item');
-                } else if (imageContainers[i + 1]) {
-                    imageContainers[0].classList.add('next-item');
+                if (images[i + 2]) {
+                    images[i + 2].classList.add('next-item');
+                } else if (images[i + 1]) {
+                    images[0].classList.add('next-item');
                 } else {
-                    imageContainers[1].classList.add('next-item');
+                    images[1].classList.add('next-item');
                 }
                 
-                const textContainers = document.querySelectorAll('.image-text-container');
-                textContainers[i].classList.add('hidden');
-                textContainers[i + 1] ? textContainers[i + 1].classList.remove('hidden') : textContainers[0].classList.remove('hidden');
+                const currentArticle = document.querySelector(`.image-text-container .${currentTextItemClass}`);
+                currentArticle.classList.add('hidden');
+                const nextArticle = document.querySelector(`.image-text-container .${nextTextItemClass}`);
+                nextArticle.classList.remove('hidden');
     
                 visibleImageChanged = true;
             }
@@ -105,7 +101,7 @@ const leftSlide = (leftArrow, imageContainers) => {
 const resizeImage = (image, main) => {
     this.event.stopPropagation();
 
-    if (this.event.detail === 1 && image.offsetParent.classList.contains('visible-item')) {
+    if (this.event.detail === 1 && image.classList.contains('visible-item')) {
         if (image.classList.contains('resized')) {
             removeResizedClass(document.querySelector('.main'));
         } else {
@@ -129,96 +125,17 @@ const addResizedClass = (image, main) => {
     main.querySelector('header').classList.add('resized');
     main.querySelector('.image-overlay').classList.add('resized');
     main.querySelector('.image-wrapper').classList.add('resized');
+    main.querySelector('.image-text:not(.hidden)').classList.add('resized');
 
     main.querySelectorAll('i.fa').forEach(elt => elt.classList.add('hidden'));
 };
 
 const removeResizedClass = (main) => {
     main.querySelectorAll('.resized').forEach(element => {
-        element.classList.contains('image-wrapper') ?
+        element.classList.contains('image-wrapper') || element.classList.contains('gallery-item-container') ?
             setTimeout(() => element.classList.remove('resized'), 600) :
             element.classList.remove('resized');
     });
 
    main.querySelectorAll('i.fa.hidden').forEach(elt => elt.classList.remove('hidden'));
-};
-
-const onTouchStart = () => {
-    this.xDown = this.event.touches ? this.event.touches[0].clientX : this.event.clientX;
-    this.yDown = this.event.touches ? this.event.touches[0].clientY : this.event.clientY;
-};
-
-const onTouchMove = (image, imageContainers) => {
-    let visibleImageChanged = false;
-
-    if (!image.classList.contains('resized') && this.xDown) {
-        const xUp = this.event.touches ? this.event.touches[0].clientX : this.event.clientX;
-        const yUp = this.event.touches ? this.event.touches[0].clientY : this.event.clientY;                                    
-
-        const xDiff = this.xDown - xUp;
-        const yDiff = this.yDown - yUp;
-
-        if ((Math.abs(xDiff) > Math.abs(yDiff)) && (this.event.movementX < 0 || xDiff > 1)) {
-            imageContainers.forEach((container, i) => {
-                if (container.classList.contains(('visible-item')) && !visibleImageChanged) {
-                    container.classList.remove('visible-item');
-        
-                    const nextContainer = imageContainers.find(container => container.classList.contains('next-item'));
-                    nextContainer.classList.remove('next-item');
-                    nextContainer.classList.add('visible-item');
-        
-                    const previousContainer = imageContainers.find(container => container.classList.contains('previous-item'));
-                    previousContainer.classList.remove('previous-item');
-        
-                    container.classList.add('previous-item');
-                    
-                    if (imageContainers[i + 2]) {
-                        imageContainers[i + 2].classList.add('next-item');
-                    } else if (imageContainers[i + 1]) {
-                        imageContainers[0].classList.add('next-item');
-                    } else {
-                        imageContainers[1].classList.add('next-item');
-                    }
-                    
-                    const textContainers = document.querySelectorAll('.image-text-container');
-                    textContainers[i].classList.add('hidden');
-                    textContainers[i + 1] ? textContainers[i + 1].classList.remove('hidden') : textContainers[0].classList.remove('hidden');
-
-                    visibleImageChanged = true;
-                }
-            });
-        } else if ((Math.abs(xDiff) > Math.abs(yDiff)) && (this.event.movementX > 0 || xDiff < -1)) {
-            imageContainers.forEach((container, i) => {
-                if (container.classList.contains(('visible-item')) && !visibleImageChanged) {
-                    container.classList.remove('visible-item');
-        
-                    const previousContainer = imageContainers.find(container => container.classList.contains('previous-item'));
-                    previousContainer.classList.remove('previous-item');
-                    previousContainer.classList.add('visible-item');
-        
-                    const nextContainer = imageContainers.find(container => container.classList.contains('next-item'));
-                    nextContainer.classList.remove('next-item');
-        
-                    container.classList.add('next-item');
-                    
-                    if (imageContainers[i - 2]) {
-                        imageContainers[i - 2].classList.add('previous-item');
-                    } else if (imageContainers[i - 1]) {
-                        imageContainers[imageContainers.length - 1].classList.add('previous-item');
-                    } else {
-                        imageContainers[imageContainers.length - 2].classList.add('previous-item');
-                    }
-    
-                    const textContainers = document.querySelectorAll('.image-text-container');
-                    textContainers[i].classList.add('hidden');
-                    textContainers[i - 1] ? textContainers[i - 1].classList.remove('hidden') : textContainers[imageContainers.length - 1].classList.remove('hidden');
-        
-                    visibleImageChanged = true;
-                }
-            });
-        }
-
-        this.xDown = null;
-        this.yDown = null;
-    }
 };
