@@ -597,14 +597,16 @@ header.resized .navigation {
 .image-text.item-1,
 .image-text.item-3,
 .image-text.item-5,
-.image-text.item-7 {
+.image-text.item-7,
+.image-text.item-9 {
     top: 0;
 }
 
 .image-text.item-2,
 .image-text.item-4,
 .image-text.item-6,
-.image-text.item-8 {
+.image-text.item-8,
+.image-text.item-10 {
     bottom: 0;
 }
 
@@ -628,6 +630,21 @@ header.resized .navigation {
     .gallery-item-container {
         width: 80%;
         margin: 0 auto;
+    }
+}
+
+@media only screen and (max-width: 564px) {
+    .image-wrapper .fa-arrow-circle-right {
+        right: 22%;
+    }
+    
+    .image-wrapper .fa-arrow-circle-left {
+        left: 20%;
+    }
+
+    .image-wrapper .fa-arrow-circle-right:before,
+    .image-wrapper .fa-arrow-circle-left:before {
+        color: #000;
     }
 }
 
