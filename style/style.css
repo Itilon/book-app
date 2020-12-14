@@ -594,20 +594,12 @@ header.resized .navigation {
     transition: opacity .6s ease-in-out;
 }
 
-.image-text.item-1,
-.image-text.item-3,
-.image-text.item-5,
-.image-text.item-7,
-.image-text.item-9 {
-    top: 0;
+.image-text-container:nth-child(1) .image-text {
+    bottom: 0;
 }
 
-.image-text.item-2,
-.image-text.item-4,
-.image-text.item-6,
-.image-text.item-8,
-.image-text.item-10 {
-    bottom: 0;
+.image-text-container:nth-child(3) .image-text {
+    top: 0;
 }
 
 .image-text.resized,

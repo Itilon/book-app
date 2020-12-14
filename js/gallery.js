@@ -26,13 +26,13 @@ const rightSlide = (images) => {
             if (image.classList.contains(('visible-item')) && !visibleImageChanged) {
                 image.classList.remove('visible-item');
 
-                const currentTextItemClass = [...image.classList].find(classListMember => classListMember.includes('item-'));
+                const currentTextItemClass = image.id;
     
                 const previousImage = images.find(image => image.classList.contains('previous-item'));
                 previousImage.classList.remove('previous-item');
                 previousImage.classList.add('visible-item');
 
-                const nextTextItemClass = [...previousImage.classList].find(classListMember => classListMember.includes('item-'));
+                const nextTextItemClass = previousImage.id;
     
                 const nextImage = images.find(image => image.classList.contains('next-item'));
                 nextImage.classList.remove('next-item');
@@ -66,13 +66,13 @@ const leftSlide = (images) => {
             if (image.classList.contains(('visible-item')) && !visibleImageChanged) {
                 image.classList.remove('visible-item');
 
-                const currentTextItemClass = [...image.classList].find(classListMember => classListMember.includes('item-'));
+                const currentTextItemClass = image.id;
     
                 const nextImage = images.find(image => image.classList.contains('next-item'));
                 nextImage.classList.remove('next-item');
                 nextImage.classList.add('visible-item');
 
-                const nextTextItemClass = [...nextImage.classList].find(classListMember => classListMember.includes('item-'));
+                const nextTextItemClass = nextImage.id;
     
                 const previousImage = images.find(image => image.classList.contains('previous-item'));
                 previousImage.classList.remove('previous-item');
