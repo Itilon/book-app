@@ -626,20 +626,13 @@ header.resized .navigation {
     }
 }
 
-@media only screen and (max-width: 780px) {
-    .gallery-item-container {
-        width: 80%;
-        margin: 0 auto;
-    }
-}
-
-@media only screen and (max-width: 564px) {
+@media only screen and (max-width: 320px) {
     .image-wrapper .fa-arrow-circle-right {
         right: 22%;
     }
     
     .image-wrapper .fa-arrow-circle-left {
-        left: 20%;
+        left: 22%;
     }
 
     .image-wrapper .fa-arrow-circle-right:before,
@@ -733,7 +726,7 @@ header.resized .navigation {
 }
 
 .contact-form form {
-    width: 95%;
+    width: 92%;
     margin: 10px auto 20px;
     font-family: PT-Italic;
     text-align: center;
