@@ -57,7 +57,7 @@ const validateForm = (form) => {
                         if (element.type === 'checkbox') {
                             element.checked = false;
                         }
-                    };
+                    }
                 });
 
                 populateFormMessage(form, false);
@@ -79,7 +79,7 @@ const sendFormData = (form) => {
     const endpoint = form.action;
     const method = form.method;
     const formData = new FormData(form);
-    const data = {}
+    const data = {};
     formData.forEach((value, key) => data[key] = value);
 
     return fetch(
@@ -94,7 +94,7 @@ const sendFormData = (form) => {
 
 const populateFormMessage = (form, isSuccess) => {
     const messageContainer = isSuccess ? createElement('div', ['success-message'], null) : createElement('div', ['error-message'], null);
-    const icon = isSuccess ? createElement('i', ['fa', 'fa-check'], null) : createElement('i', ['fa', 'fa-exclamation-triangle'], null);;
+    const icon = isSuccess ? createElement('i', ['fa', 'fa-check'], null) : createElement('i', ['fa', 'fa-exclamation-triangle'], null);
     const message = isSuccess ?
         createElement('p', null, 'Поръчката ти е изпратена успешно.') :
         createElement('p', null, 'Нещо се обърка. Моля, опитай отново!');
@@ -106,10 +106,10 @@ const populateFormMessage = (form, isSuccess) => {
     
     form.prepend(messageContainer);
 
-    setTimeout(() => messageContainer.classList.add('show'), 0);
+    setTimeout(() => { messageContainer.classList.add('show') }, 0);
 
     exitBtn.addEventListener('click', () => removeElement(messageContainer));
-}
+};
 
 const populateErrorMessage = (element) => {
     element.classList.add('invalid');
@@ -118,7 +118,7 @@ const populateErrorMessage = (element) => {
     const errorIcon = createElement('i', ['fa', 'fa-exclamation-triangle'], null);
     const errorMessage = element.type === 'checkbox' ?
         createElement('p', null, 'Моля, приеми условията на сайта!') :
-        createElement('p', null, 'Моля, попълни това поле правилно!')
+        createElement('p', null, 'Моля, попълни това поле правилно!');
     const exitBtn = createElement('span', ['exit-btn'], '&#10005;');
 
     errorMessageContainer.appendChild(errorIcon);
@@ -131,7 +131,7 @@ const populateErrorMessage = (element) => {
         element.parentElement.parentElement.appendChild(errorMessageContainer);
     }
 
-    setTimeout(() => errorMessageContainer.classList.add('show'), 0);
+    setTimeout(() => { errorMessageContainer.classList.add('show') }, 0);
 
     exitBtn.addEventListener('click', () => removeElement(errorMessageContainer));
 };
@@ -205,4 +205,4 @@ const validateNumberInput = (input, pieceCounter, priceCounter) => {
         pieceCounter.innerText = 'бройка';
         priceCounter.innerText = '30';
     }
-}
+};
